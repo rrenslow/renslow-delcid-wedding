@@ -320,7 +320,24 @@
           <p class="sub" data-lang="es">Algunas favoritas, y más pronto.</p>
         </div>
 
-        <div id="photoGallery" class="gallery" aria-label="Photo gallery"></div>
+        <div id="photoGallery" class="gallery" aria-label="Photo gallery">
+          <!-- Fallback content (shows even if JS is blocked). The JS gallery will replace this when it loads. -->
+          <figure class="polaroid tilt2" data-full="assets/montemilia/montemilia-web.jpg">
+            <img src="assets/montemilia/montemilia-web.jpg" loading="lazy" alt="Montemilia venue view." />
+            <figcaption data-lang="en">Montemilia</figcaption>
+            <figcaption data-lang="es">Montemilia</figcaption>
+          </figure>
+          <figure class="polaroid tilt4" data-full="assets/montemilia/montemilia-reception.jpg">
+            <img src="assets/montemilia/montemilia-reception.jpg" loading="lazy" alt="Reception space at Montemilia." />
+            <figcaption data-lang="en">Reception vibes</figcaption>
+            <figcaption data-lang="es">Vibra de recepción</figcaption>
+          </figure>
+          <figure class="polaroid tilt1" data-full="assets/montemilia/montemilia-flowers.jpg">
+            <img src="assets/montemilia/montemilia-flowers.jpg" loading="lazy" alt="Garden and floral details at Montemilia." />
+            <figcaption data-lang="en">Garden details</figcaption>
+            <figcaption data-lang="es">Detalles del jardín</figcaption>
+          </figure>
+        </div>
 
         <dialog id="lightbox" class="lightbox" aria-label="Photo viewer">
           <button id="closeLightbox" class="close" type="button" aria-label="Close">×</button>

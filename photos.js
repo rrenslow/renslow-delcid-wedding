@@ -1,9 +1,51 @@
 // Photo gallery entries.
 // To add photos:
-// 1) Upload images into /assets
+// 1) Upload images into /assets (or /assets/montemilia)
 // 2) Add a new object below and commit.
 
 window.PHOTO_GALLERY = [
+  // Montemilia (venue) - you can replace these images anytime with the same filenames.
+  {
+    full: "assets/montemilia/montemilia-web.jpg",
+    thumb: "assets/montemilia/montemilia-web.jpg",
+    alt: {
+      en: "Montemilia venue view.",
+      es: "Vista del lugar Montemilia."
+    },
+    caption: {
+      en: "Montemilia",
+      es: "Montemilia"
+    },
+    tilt: "tilt2"
+  },
+  {
+    full: "assets/montemilia/montemilia-reception.jpg",
+    thumb: "assets/montemilia/montemilia-reception.jpg",
+    alt: {
+      en: "Reception space at Montemilia.",
+      es: "Espacio de recepción en Montemilia."
+    },
+    caption: {
+      en: "Reception vibes",
+      es: "Vibra de recepción"
+    },
+    tilt: "tilt4"
+  },
+  {
+    full: "assets/montemilia/montemilia-flowers.jpg",
+    thumb: "assets/montemilia/montemilia-flowers.jpg",
+    alt: {
+      en: "Garden and floral details at Montemilia.",
+      es: "Detalles de jardín y flores en Montemilia."
+    },
+    caption: {
+      en: "Garden details",
+      es: "Detalles del jardín"
+    },
+    tilt: "tilt1"
+  },
+
+  // Your photos
   {
     full: "assets/photo2.jpg",
     thumb: "assets/photo2_sm.jpg",
@@ -15,7 +57,7 @@ window.PHOTO_GALLERY = [
       en: "Family smile",
       es: "Sonrisa en familia"
     },
-    tilt: "tilt2"
+    tilt: "tilt3"
   },
   {
     full: "assets/photo5.jpg",
@@ -28,7 +70,7 @@ window.PHOTO_GALLERY = [
       en: "Beach time",
       es: "Tiempo de playa"
     },
-    tilt: "tilt4"
+    tilt: "tilt5"
   },
   {
     full: "assets/photo4.jpg",
@@ -41,6 +83,6 @@ window.PHOTO_GALLERY = [
       en: "The yes moment",
       es: "El momento del sí"
     },
-    tilt: "tilt1"
+    tilt: "tilt2"
   }
 ];
