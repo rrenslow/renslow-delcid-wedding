@@ -23,7 +23,7 @@
         <a href="index.html#schedule"><span data-lang="en">Schedule</span><span data-lang="es">Horario</span></a>
         <a href="index.html#rsvp"><span data-lang="en">RSVP</span><span data-lang="es">RSVP</span></a>
         <a class="active" href="travel.html"><span data-lang="en">Travel</span><span data-lang="es">Viaje</span></a>
-        <a href="#faq"><span data-lang="en">FAQ</span><span data-lang="es">Preguntas</span></a>
+        <a href="travel.html#faq"><span data-lang="en">FAQ</span><span data-lang="es">Preguntas</span></a>
         <a href="index.html#photos"><span data-lang="en">Photos</span><span data-lang="es">Fotos</span></a>
       </nav>
 
@@ -60,7 +60,68 @@
               <a class="btn ghost" href="index.html#top" data-lang="en">Back to the main page</a>
               <a class="btn ghost" href="index.html#top" data-lang="es">Regresar a la página principal</a>
             </div>
+
+            <div class="mini-callout venue-summary">
+              <span class="badge" data-lang="en">Wedding day</span>
+              <span class="badge" data-lang="es">Día de la boda</span>
+              <p class="small" data-lang="en"><strong><span data-lang="en" data-bind="dateTime"></span></strong><br/>
+                <strong><span data-bind="venueName"></span></strong><br/>
+                <span data-bind="venueAddress1"></span><br/>
+                <span data-bind="venueAddress2"></span><br/>
+                <span data-bind="venueAddress3"></span>
+              </p>
+              <p class="small" data-lang="es"><strong><span data-lang="es" data-bind="dateTime"></span></strong><br/>
+                <strong><span data-bind="venueName"></span></strong><br/>
+                <span data-bind="venueAddress1"></span><br/>
+                <span data-bind="venueAddress2"></span><br/>
+                <span data-bind="venueAddress3"></span>
+              </p>
+              <div class="map-links">
+                <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="googleMaps">Google Maps</a>
+                <span class="dot">·</span>
+                <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="waze">Waze</a>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="section-head" style="margin-top: 22px;">
+          <h2 data-lang="en">Montemilia</h2>
+          <h2 data-lang="es">Montemilia</h2>
+          <p class="sub" data-lang="en">A few venue links and a little preview.</p>
+          <p class="sub" data-lang="es">Enlaces del lugar y una pequeña probadita.</p>
+        </div>
+
+        <div class="grid three section-pad venue-cards">
+          <a class="paper card venue-card" target="_blank" rel="noopener noreferrer" data-bind-href="venueWebsite" href="https://montemilia.com/">
+            <img class="venue-img" src="assets/montemilia-web.svg" alt="" aria-hidden="true" />
+            <div class="venue-text">
+              <div class="venue-title" data-lang="en">Montemilia Website</div>
+              <div class="venue-title" data-lang="es">Sitio web de Montemilia</div>
+              <p class="small" data-lang="en">Directions, vibe, and venue info.</p>
+              <p class="small" data-lang="es">Direcciones, ambiente e información.</p>
+            </div>
+          </a>
+
+          <a class="paper card venue-card" target="_blank" rel="noopener noreferrer" data-bind-href="venueInstagram" href="https://www.instagram.com/montemilia/">
+            <img class="venue-img" src="assets/montemilia-instagram.svg" alt="" aria-hidden="true" />
+            <div class="venue-text">
+              <div class="venue-title" data-lang="en">Instagram</div>
+              <div class="venue-title" data-lang="es">Instagram</div>
+              <p class="small" data-lang="en">Photos and the most recent posts.</p>
+              <p class="small" data-lang="es">Fotos y publicaciones recientes.</p>
+            </div>
+          </a>
+
+          <a class="paper card venue-card" target="_blank" rel="noopener noreferrer" data-bind-href="venueFacebook" href="https://www.facebook.com/Montemilia.eventosdealtura/">
+            <img class="venue-img" src="assets/montemilia-facebook.svg" alt="" aria-hidden="true" />
+            <div class="venue-text">
+              <div class="venue-title" data-lang="en">Facebook</div>
+              <div class="venue-title" data-lang="es">Facebook</div>
+              <p class="small" data-lang="en">More photos and venue updates.</p>
+              <p class="small" data-lang="es">Más fotos y novedades del lugar.</p>
+            </div>
+          </a>
         </div>
 
         <div class="grid two section-pad">
@@ -159,18 +220,18 @@
             <h2 class="h2" data-lang="es">Preguntas</h2>
 
             <p class="small" data-lang="en">
-              If you are unsure about anything, text or call: <a class="inline" href="tel:+15097139030">509-713-9030</a>.
+              If you are unsure about anything, text or call: <a class="inline" href="tel:+15097139030" data-bind-href="tel"><span data-bind="phoneDisplay"></span></a>.
             </p>
             <p class="small" data-lang="es">
-              Si tienen dudas, pueden llamarnos o escribirnos: <a class="inline" href="tel:+15097139030">509-713-9030</a>.
+              Si tienen dudas, pueden llamarnos o escribirnos: <a class="inline" href="tel:+15097139030" data-bind-href="tel"><span data-bind="phoneDisplay"></span></a>.
             </p>
 
             <div class="cta-row">
-              <a class="btn" href="tel:+15097139030" data-lang="en">Call</a>
-              <a class="btn" href="tel:+15097139030" data-lang="es">Llamar</a>
+              <a class="btn" href="tel:+15097139030" data-bind-href="tel" data-lang="en">Call</a>
+              <a class="btn" href="tel:+15097139030" data-bind-href="tel" data-lang="es">Llamar</a>
 
-              <a class="btn ghost" href="sms:+15097139030" data-lang="en">Text</a>
-              <a class="btn ghost" href="sms:+15097139030" data-lang="es">Mensaje</a>
+              <a class="btn ghost" href="sms:+15097139030" data-bind-href="sms" data-lang="en">Text</a>
+              <a class="btn ghost" href="sms:+15097139030" data-bind-href="sms" data-lang="es">Mensaje</a>
             </div>
           </article>
         </div>
@@ -249,8 +310,8 @@
               <span data-lang="es">¿Con quién puedo comunicarme si tengo preguntas?</span>
             </summary>
             <div class="answer">
-              <p data-lang="en">Text or call <a class="inline" href="tel:+15097139030">509-713-9030</a>.</p>
-              <p data-lang="es">Pueden llamar o escribir al <a class="inline" href="tel:+15097139030">509-713-9030</a>.</p>
+              <p data-lang="en">Text or call <a class="inline" href="tel:+15097139030" data-bind-href="tel"><span data-bind="phoneDisplay"></span></a>.</p>
+              <p data-lang="es">Pueden llamar o escribir al <a class="inline" href="tel:+15097139030" data-bind-href="tel"><span data-bind="phoneDisplay"></span></a>.</p>
             </div>
           </details>
         </div>
@@ -271,6 +332,7 @@
     </footer>
   </main>
 
+  <script src="site-config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

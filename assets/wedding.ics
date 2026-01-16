@@ -9,7 +9,7 @@ DTSTAMP:20260114T000000Z
 DTSTART;TZID=America/El_Salvador:20261127T160000
 DTEND;TZID=America/El_Salvador:20261127T230000
 SUMMARY:Wedding - Ryan Renslow & Joselyn Del Cid
-LOCATION:Montemilia, Km 18.5 carretera al volcán de San Salvador, Finca Florencia #13, Santa Tecla, El Salvador
-DESCRIPTION:Cocktails 4:00 PM. Ceremony 5:00 PM. Dinner, dancing, and celebration.
+LOCATION:MONTEMILIA, Finca Florencia #13, Km 18.5, Carretera al Volcán de San Salvador, Santa Tecla, La Libertad, El Salvador
+DESCRIPTION:Cocktails 4:00 PM. Ceremony 5:00 PM. Dinner, dancing, and celebration.\nDetails: https://rrenslow.github.io/renslow-delcid-wedding/
 END:VEVENT
 END:VCALENDAR

@@ -16,15 +16,15 @@
 
   <header class="topbar" role="banner">
     <div class="wrap topbar-inner">
-      <a class="brand" href="#top" aria-label="Home">Renslow <span class="amp">&amp;</span> Del Cid</a>
+      <a class="brand" href="index.html#top" aria-label="Home">Renslow <span class="amp">&amp;</span> Del Cid</a>
 
       <nav class="nav" aria-label="Primary">
-        <a href="#details"><span data-lang="en">Details</span><span data-lang="es">Detalles</span></a>
-        <a href="#schedule"><span data-lang="en">Schedule</span><span data-lang="es">Horario</span></a>
-        <a href="#rsvp"><span data-lang="en">RSVP</span><span data-lang="es">RSVP</span></a>
+        <a href="index.html#details"><span data-lang="en">Details</span><span data-lang="es">Detalles</span></a>
+        <a href="index.html#schedule"><span data-lang="en">Schedule</span><span data-lang="es">Horario</span></a>
+        <a href="index.html#rsvp"><span data-lang="en">RSVP</span><span data-lang="es">RSVP</span></a>
         <a href="travel.html"><span data-lang="en">Travel</span><span data-lang="es">Viaje</span></a>
         <a href="travel.html#faq"><span data-lang="en">FAQ</span><span data-lang="es">Preguntas</span></a>
-        <a href="#photos"><span data-lang="en">Photos</span><span data-lang="es">Fotos</span></a>
+        <a href="index.html#photos"><span data-lang="en">Photos</span><span data-lang="es">Fotos</span></a>
       </nav>
 
       <div class="lang-switch" role="group" aria-label="Language">
@@ -53,26 +53,35 @@
               <div class="row">
                 <span class="label" data-lang="en">Date</span>
                 <span class="label" data-lang="es">Fecha</span>
-                <span class="value">Friday, November 27, 2026</span>
+                <span class="value">
+                  <span data-lang="en" data-bind="dateTime"></span>
+                  <span data-lang="es" data-bind="dateTime"></span>
+                </span>
               </div>
 
               <div class="row">
                 <span class="label" data-lang="en">Location</span>
                 <span class="label" data-lang="es">Lugar</span>
                 <span class="value">
-                  Montemilia<br/>
-                  Km 18.5 carretera al volcán de San Salvador<br/>
-                  Finca Florencia #13, Santa Tecla, El Salvador
+                  <span data-bind="venueName"></span><br/>
+                  <span data-bind="venueAddress1"></span><br/>
+                  <span data-bind="venueAddress2"></span><br/>
+                  <span data-bind="venueAddress3"></span>
+                  <div class="map-links">
+                    <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="googleMaps">Google Maps</a>
+                    <span class="dot">·</span>
+                    <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="waze">Waze</a>
+                  </div>
                 </span>
               </div>
             </div>
 
             <div class="hero-actions">
-              <a class="btn" href="#rsvp" data-lang="en">RSVP</a>
-              <a class="btn" href="#rsvp" data-lang="es">Confirmar asistencia</a>
+              <a class="btn" href="index.html#rsvp" data-lang="en">RSVP</a>
+              <a class="btn" href="index.html#rsvp" data-lang="es">Confirmar asistencia</a>
 
               <a class="btn ghost" href="travel.html">Details for traveling in El Salvador</a>
-              <a class="btn ghost" href="wedding.ics">Add to calendar</a>
+              <a class="btn ghost" href="assets/wedding.ics" data-bind-href="calendar">Add to calendar</a>
             </div>
 
             <div class="countdown" aria-live="polite">
@@ -102,10 +111,16 @@
             <div class="invite-text" data-lang="en">
               <p>Please come on an adventure with us:</p>
               <p><strong>Marriage of Ryan Renslow and Joselyn Del Cid</strong></p>
-              <p><strong>Friday, November 27, 2026</strong></p>
-              <p><strong>Montemilia</strong><br/>
-                Km 18.5 carretera al volcán de San Salvador<br/>
-                Finca Florencia #13, Santa Tecla, El Salvador
+              <p><strong><span data-lang="en" data-bind="dateTime"></span></strong></p>
+              <p><strong><span data-bind="venueName"></span></strong><br/>
+                <span data-bind="venueAddress1"></span><br/>
+                <span data-bind="venueAddress2"></span><br/>
+                <span data-bind="venueAddress3"></span><br/>
+                <span class="map-links">
+                  <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="googleMaps">Google Maps</a>
+                  <span class="dot">·</span>
+                  <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="waze">Waze</a>
+                </span>
               </p>
               <p><strong>Schedule</strong><br/>
                 Cocktails and hors d’oeuvres at 4:00 PM<br/>
@@ -114,8 +129,8 @@
               </p>
               <p>No gifts are expected, we just want to celebrate with you.</p>
               <p>Please visit our wedding website for travel details and additional information about El Salvador.</p>
-              <p>Please RSVP at <a class="inline" href="tel:+15097139030">509-713-9030</a> or on our website (same as QR code):<br/>
-                <a class="inline" href="https://www.xxx.RenslowDelCid.com">www.xxx.RenslowDelCid.com</a>
+              <p>Please RSVP at <a class="inline" href="tel:+15097139030" data-bind-href="tel"><span data-bind="phoneDisplay"></span></a> or on our website (same as QR code):<br/>
+                <a class="inline" href="https://www.xxx.RenslowDelCid.com" data-bind-href="rsvpUrl"><span data-bind="rsvpDisplay"></span></a>
               </p>
               <p>Hope you can make it!</p>
             </div>
@@ -123,10 +138,16 @@
             <div class="invite-text" data-lang="es">
               <p>Por favor, acompáñennos en una aventura con nosotros:</p>
               <p><strong>Boda de Ryan Renslow y Joselyn Del Cid</strong></p>
-              <p><strong>Viernes, 27 de noviembre de 2026</strong></p>
-              <p><strong>Montemilia</strong><br/>
-                Km 18.5 carretera al volcán de San Salvador<br/>
-                Finca Florencia #13, Santa Tecla, El Salvador
+              <p><strong><span data-lang="es" data-bind="dateTime"></span></strong></p>
+              <p><strong><span data-bind="venueName"></span></strong><br/>
+                <span data-bind="venueAddress1"></span><br/>
+                <span data-bind="venueAddress2"></span><br/>
+                <span data-bind="venueAddress3"></span><br/>
+                <span class="map-links">
+                  <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="googleMaps">Google Maps</a>
+                  <span class="dot">·</span>
+                  <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="waze">Waze</a>
+                </span>
               </p>
               <p><strong>Horario</strong><br/>
                 Cocteles y bocadillos a las 4:00 p. m.<br/>
@@ -135,8 +156,8 @@
               </p>
               <p>No esperamos regalos, solo queremos celebrar con ustedes.</p>
               <p>Por favor visiten nuestro sitio web de boda para más detalles sobre cómo viajar a El Salvador.</p>
-              <p>Por favor confirmen su asistencia (RSVP) al <a class="inline" href="tel:+15097139030">509-713-9030</a> o en nuestro sitio web (el mismo del código QR):<br/>
-                <a class="inline" href="https://www.xxx.RenslowDelCid.com">www.xxx.RenslowDelCid.com</a>
+              <p>Por favor confirmen su asistencia (RSVP) al <a class="inline" href="tel:+15097139030" data-bind-href="tel"><span data-bind="phoneDisplay"></span></a> o en nuestro sitio web (el mismo del código QR):<br/>
+                <a class="inline" href="https://www.xxx.RenslowDelCid.com" data-bind-href="rsvpUrl"><span data-bind="rsvpDisplay"></span></a>
               </p>
               <p>¡Esperamos que puedan acompañarnos!</p>
             </div>
@@ -149,13 +170,13 @@
             <ul class="list" data-lang="en">
               <li>Arrive a bit early so you can settle in, grab a drink, and enjoy the venue.</li>
               <li>We will update this site as we finalize travel tips, lodging options, and local recommendations.</li>
-              <li>If you have questions, the fastest RSVP is a quick text to <a class="inline" href="sms:+15097139030">509-713-9030</a>.</li>
+              <li>If you have questions, the fastest RSVP is a quick text to <a class="inline" href="sms:+15097139030" data-bind-href="sms"><span data-bind="phoneDisplay"></span></a>.</li>
             </ul>
 
             <ul class="list" data-lang="es">
               <li>Lleguen un poco temprano para acomodarse, tomar algo y disfrutar del lugar.</li>
               <li>Actualizaremos este sitio con recomendaciones de viaje, hospedaje y actividades.</li>
-              <li>Si tienen preguntas, lo más fácil es escribirnos por mensaje a <a class="inline" href="sms:+15097139030">509-713-9030</a>.</li>
+              <li>Si tienen preguntas, lo más fácil es escribirnos por mensaje a <a class="inline" href="sms:+15097139030" data-bind-href="sms"><span data-bind="phoneDisplay"></span></a>.</li>
             </ul>
 
             <div class="note">
@@ -217,18 +238,18 @@
             <h3 data-lang="es">RSVP rápido</h3>
 
             <div class="cta-row">
-              <a class="btn" href="tel:+15097139030" data-lang="en">Call 509-713-9030</a>
-              <a class="btn" href="tel:+15097139030" data-lang="es">Llamar al 509-713-9030</a>
+              <a class="btn" href="tel:+15097139030" data-bind-href="tel" data-lang="en">Call <span data-bind="phoneDisplay"></span></a>
+              <a class="btn" href="tel:+15097139030" data-bind-href="tel" data-lang="es">Llamar <span data-bind="phoneDisplay"></span></a>
 
-              <a class="btn ghost" href="sms:+15097139030" data-lang="en">Text us</a>
-              <a class="btn ghost" href="sms:+15097139030" data-lang="es">Escribirnos</a>
+              <a class="btn ghost" href="sms:+15097139030" data-bind-href="sms" data-lang="en">Text us</a>
+              <a class="btn ghost" href="sms:+15097139030" data-bind-href="sms" data-lang="es">Escribirnos</a>
             </div>
 
             <p class="small" data-lang="en">
-              Website (same as QR code): <a class="inline" href="https://www.xxx.RenslowDelCid.com">www.xxx.RenslowDelCid.com</a>
+              Website (same as QR code): <a class="inline" href="https://www.xxx.RenslowDelCid.com" data-bind-href="rsvpUrl"><span data-bind="rsvpDisplay"></span></a>
             </p>
             <p class="small" data-lang="es">
-              Sitio web (el mismo del código QR): <a class="inline" href="https://www.xxx.RenslowDelCid.com">www.xxx.RenslowDelCid.com</a>
+              Sitio web (el mismo del código QR): <a class="inline" href="https://www.xxx.RenslowDelCid.com" data-bind-href="rsvpUrl"><span data-bind="rsvpDisplay"></span></a>
             </p>
           </article>
 
@@ -299,25 +320,7 @@
           <p class="sub" data-lang="es">Algunas favoritas, y más pronto.</p>
         </div>
 
-        <div class="gallery" aria-label="Photo gallery">
-          <figure class="polaroid tilt1" data-full="assets/photo4.jpg">
-            <img src="assets/photo4_sm.jpg" alt="Joselyn showing an engagement ring while smiling, Ryan nearby." loading="lazy" />
-            <figcaption data-lang="en">The yes moment</figcaption>
-            <figcaption data-lang="es">El momento del sí</figcaption>
-          </figure>
-
-          <figure class="polaroid tilt2" data-full="assets/photo5.jpg">
-            <img src="assets/photo5_sm.jpg" alt="Ryan and Joselyn at the beach, smiling together." loading="lazy" />
-            <figcaption data-lang="en">Beach time</figcaption>
-            <figcaption data-lang="es">Tiempo de playa</figcaption>
-          </figure>
-
-          <figure class="polaroid tilt3" data-full="assets/photo2.jpg">
-            <img src="assets/photo2_sm.jpg" alt="A happy family selfie outdoors." loading="lazy" />
-            <figcaption data-lang="en">Family smile</figcaption>
-            <figcaption data-lang="es">Sonrisa en familia</figcaption>
-          </figure>
-        </div>
+        <div id="photoGallery" class="gallery" aria-label="Photo gallery"></div>
 
         <dialog id="lightbox" class="lightbox" aria-label="Photo viewer">
           <button id="closeLightbox" class="close" type="button" aria-label="Close">×</button>
@@ -340,6 +343,8 @@
     </footer>
   </main>
 
+  <script src="site-config.js"></script>
+  <script src="photos.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

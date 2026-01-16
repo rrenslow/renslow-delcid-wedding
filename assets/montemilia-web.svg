@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Montemilia website">
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="#ffffff" stroke="#c8b27a" stroke-width="2"/>
+  <path d="M104 276c56-80 104-80 160 0c52-96 112-96 168 0c48-80 104-80 160 0" fill="none" stroke="#24302e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M104 276c56-80 104-80 160 0" fill="none" stroke="#c8b27a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M264 276c52-96 112-96 168 0" fill="none" stroke="#c8b27a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M432 276c48-80 104-80 160 0" fill="none" stroke="#c8b27a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M156 132c18 0 32 14 32 32c0 18-14 32-32 32c-18 0-32-14-32-32c0-18 14-32 32-32z" fill="none" stroke="#24302e" stroke-width="6"/>
+  <path d="M148 168c8-8 20-20 36-28" fill="none" stroke="#c8b27a" stroke-width="5" stroke-linecap="round"/>
+  <path d="M452 118c18 0 32 14 32 32c0 18-14 32-32 32c-18 0-32-14-32-32c0-18 14-32 32-32z" fill="none" stroke="#24302e" stroke-width="6"/>
+  <path d="M440 144c10 10 18 22 24 38" fill="none" stroke="#c8b27a" stroke-width="5" stroke-linecap="round"/>
+  <path d="M304 96c22 0 40 18 40 40c0 22-18 40-40 40c-22 0-40-18-40-40c0-22 18-40 40-40z" fill="none" stroke="#24302e" stroke-width="6"/>
+  <path d="M292 140c10-10 22-18 40-28" fill="none" stroke="#c8b27a" stroke-width="5" stroke-linecap="round"/>
+  <path d="M92 312h456" stroke="#e8dfc6" stroke-width="3" stroke-linecap="round"/>
+</svg>

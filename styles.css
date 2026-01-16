@@ -196,13 +196,24 @@ body{
   overflow: hidden;
   position: relative;
   z-index: 2;
+  background: #ffffff;
+  border: 1px solid rgba(201,170,102,0.18);
 }
+.floral-col::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0) 28%, rgba(255,255,255,0) 72%, rgba(255,255,255,0.92));
+  pointer-events: none;
+  z-index: 1;
+}
+
 .floral-col::after{
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 44px;
+  width: 56px;
   height: 100%;
   background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.95));
   pointer-events: none;
@@ -352,6 +363,65 @@ body{
   text-underline-offset: 3px;
 }
 .inline:hover{ color: rgba(34,48,46,0.84); }
+
+.map-links{
+  margin-top: 6px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.map-links .dot{
+  opacity: 0.55;
+}
+
+.venue-summary{
+  margin-top: 14px;
+}
+
+.venue-cards{
+  margin-top: 16px;
+}
+.venue-card{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 18px;
+}
+.venue-card:hover{
+  transform: translateY(-1px);
+}
+.venue-img{
+  width: 120px;
+  height: 84px;
+  object-fit: contain;
+  display: block;
+}
+.venue-title{
+  margin: 0 0 6px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+.venue-text{
+  margin: 0;
+  color: var(--muted);
+}
+
+@media (max-width: 640px){
+  .venue-card{
+    grid-template-columns: 1fr;
+  }
+  .venue-img{
+    width: 100%;
+    height: 120px;
+  }
+}
 
 .list{
   margin: 0;
@@ -533,7 +603,7 @@ input:focus, select:focus{
   position: absolute;
   top: -10px;
   right: -10px;
-  width: 44px;
+  width: 56px;
   height: 44px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.40);

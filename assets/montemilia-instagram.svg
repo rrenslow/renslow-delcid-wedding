@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Montemilia Instagram">
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="#ffffff" stroke="#c8b27a" stroke-width="2"/>
+
+  <!-- Camera -->
+  <rect x="184" y="92" width="272" height="216" rx="42" fill="none" stroke="#24302e" stroke-width="10"/>
+  <circle cx="320" cy="200" r="62" fill="none" stroke="#24302e" stroke-width="10"/>
+  <circle cx="404" cy="142" r="14" fill="none" stroke="#c8b27a" stroke-width="8"/>
+
+  <!-- Decorative hills and leaves -->
+  <path d="M120 300c48-70 104-70 152 0c40-70 92-70 144 0c42-56 88-56 136 0" fill="none" stroke="#c8b27a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M104 284c22 0 40 18 40 40" fill="none" stroke="#24302e" stroke-width="6" stroke-linecap="round"/>
+  <path d="M536 284c-22 0-40 18-40 40" fill="none" stroke="#24302e" stroke-width="6" stroke-linecap="round"/>
+
+  <path d="M92 312h456" stroke="#e8dfc6" stroke-width="3" stroke-linecap="round"/>
+</svg>

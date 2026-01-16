@@ -1,11 +1,29 @@
-// Wedding site interactions: language toggle, RSVP helper, lightbox, countdown.
+// Wedding site interactions: language toggle, RSVP helper, lightbox, countdown, shared bindings.
 
 (function () {
   const DEFAULT_LANG = "en";
-  const PHONE_E164 = "+15097139030";
+
+  const CONFIG = (window.SITE_CONFIG && typeof window.SITE_CONFIG === "object") ? window.SITE_CONFIG : {};
+  const CONTACT = CONFIG.contact || {};
+  const VENUE = CONFIG.venue || {};
+
+  const PHONE_E164 = CONTACT.phoneE164 || "+15097139030";
+  const PHONE_DISPLAY = CONTACT.phoneDisplay || "509-713-9030";
+
+  function safeLang(lang) {
+    return (lang === "es" || lang === "en") ? lang : DEFAULT_LANG;
+  }
+
+  function getLanguage() {
+    try {
+      const saved = localStorage.getItem("weddingLang");
+      if (saved === "en" || saved === "es") return saved;
+    } catch (e) {}
+    return DEFAULT_LANG;
+  }
 
   function setLanguage(lang) {
-    const safe = (lang === "es" || lang === "en") ? lang : DEFAULT_LANG;
+    const safe = safeLang(lang);
     document.documentElement.setAttribute("data-language", safe);
 
     document.querySelectorAll(".lang-btn").forEach((btn) => {
@@ -21,42 +39,146 @@
       attendingSelect.options[2].textContent = "No";
     }
 
-
     try { localStorage.setItem("weddingLang", safe); } catch (e) {}
   }
 
-  function getLanguage() {
-    try {
-      const saved = localStorage.getItem("weddingLang");
-      if (saved === "en" || saved === "es") return saved;
-    } catch (e) {}
-    return DEFAULT_LANG;
+  function rsvpDisplay(url) {
+    const u = String(url || "").trim();
+    if (!u) return "";
+    return u.replace(/^https?:\/\//i, "").replace(/\/$/, "");
   }
 
-  // Initialize language
+  function fullAddressQuery() {
+    const name = String(VENUE.name || "").trim();
+    const lines = Array.isArray(VENUE.addressLines) ? VENUE.addressLines : [];
+    const parts = [name].concat(lines).filter(Boolean);
+    return parts.join(", ");
+  }
+
+  function makeGoogleMapsLink(query) {
+    const q = encodeURIComponent(query);
+    return "https://www.google.com/maps/search/?api=1&query=" + q;
+  }
+
+  function makeWazeLink(query) {
+    const q = encodeURIComponent(query);
+    return "https://waze.com/ul?q=" + q + "&navigate=yes";
+  }
+
+  function applyBindings() {
+    const lang = safeLang(document.documentElement.getAttribute("data-language"));
+
+    // Text bindings
+    document.querySelectorAll("[data-bind]").forEach((el) => {
+      const key = el.getAttribute("data-bind");
+      const elLang = safeLang(el.getAttribute("data-lang") || lang);
+
+      let value = "";
+
+      if (key === "dateTime") {
+        const dt = CONFIG.dateTime;
+        if (dt && typeof dt === "object") value = dt[elLang] || dt[DEFAULT_LANG] || "";
+      } else if (key === "venueName") {
+        value = String(VENUE.name || "");
+      } else if (key === "venueAddress1") {
+        value = String((Array.isArray(VENUE.addressLines) ? VENUE.addressLines[0] : "") || "");
+      } else if (key === "venueAddress2") {
+        value = String((Array.isArray(VENUE.addressLines) ? VENUE.addressLines[1] : "") || "");
+      } else if (key === "venueAddress3") {
+        value = String((Array.isArray(VENUE.addressLines) ? VENUE.addressLines[2] : "") || "");
+      } else if (key === "phoneDisplay") {
+        value = PHONE_DISPLAY;
+      } else if (key === "rsvpDisplay") {
+        value = rsvpDisplay(CONTACT.rsvpUrl);
+      } else if (key === "rsvpUrl") {
+        value = String(CONTACT.rsvpUrl || "");
+      }
+
+      if (typeof value === "string" && value) {
+        el.textContent = value;
+      }
+    });
+
+    // Href bindings
+    const query = fullAddressQuery();
+    const hrefMap = {
+      googleMaps: makeGoogleMapsLink(query),
+      waze: makeWazeLink(query),
+      tel: "tel:" + PHONE_E164,
+      sms: "sms:" + PHONE_E164,
+      rsvpUrl: String(CONTACT.rsvpUrl || ""),
+      calendar: String(CONFIG.calendarPath || "assets/wedding.ics"),
+      venueWebsite: String((VENUE.links || {}).website || ""),
+      venueInstagram: String((VENUE.links || {}).instagram || ""),
+      venueFacebook: String((VENUE.links || {}).facebook || "")
+    };
+
+    document.querySelectorAll("[data-bind-href]").forEach((a) => {
+      const key = a.getAttribute("data-bind-href");
+      const href = hrefMap[key] || "";
+      if (href) a.setAttribute("href", href);
+    });
+  }
+
+  // Initialize language and bindings
   setLanguage(getLanguage());
+  applyBindings();
 
   // Wire up language buttons
   document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    btn.addEventListener("click", () => {
+      setLanguage(btn.dataset.lang);
+      applyBindings();
+    });
   });
+
+  // Build photo gallery (index page)
+  const galleryEl = document.getElementById("photoGallery");
+  const photos = Array.isArray(window.PHOTO_GALLERY) ? window.PHOTO_GALLERY : null;
+  if (galleryEl && photos) {
+    galleryEl.innerHTML = "";
+
+    photos.forEach((p) => {
+      const fig = document.createElement("figure");
+      fig.className = "polaroid " + (p.tilt || "tilt1");
+      fig.setAttribute("data-full", p.full);
+
+      const img = document.createElement("img");
+      img.src = p.thumb || p.full;
+      img.loading = "lazy";
+      img.alt = (p.alt && p.alt.en) ? p.alt.en : "";
+      fig.appendChild(img);
+
+      const capEn = document.createElement("figcaption");
+      capEn.setAttribute("data-lang", "en");
+      capEn.textContent = (p.caption && p.caption.en) ? p.caption.en : "";
+      fig.appendChild(capEn);
+
+      const capEs = document.createElement("figcaption");
+      capEs.setAttribute("data-lang", "es");
+      capEs.textContent = (p.caption && p.caption.es) ? p.caption.es : "";
+      fig.appendChild(capEs);
+
+      galleryEl.appendChild(fig);
+    });
+  }
 
   // Countdown
   const countdownEl = document.getElementById("countdownValue");
   if (countdownEl) {
-    const target = new Date("2026-11-27T16:00:00-06:00");
+    const target = new Date(String(CONFIG.startIso || "2026-11-27T16:00:00-06:00"));
     const tick = () => {
       const now = new Date();
       const ms = target.getTime() - now.getTime();
       const days = Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24)));
-      const lang = document.documentElement.getAttribute("data-language") || DEFAULT_LANG;
+      const lang = safeLang(document.documentElement.getAttribute("data-language"));
       countdownEl.textContent = (lang === "es") ? (days + " días") : (days + " days");
     };
     tick();
     setInterval(tick, 60_000);
   }
 
-  // RSVP form helper
+  // RSVP form helper (index page)
   const form = document.getElementById("rsvpForm");
   const out = document.getElementById("rsvpOutput");
   const box = document.getElementById("messageBox");
@@ -102,7 +224,7 @@
     form.addEventListener("submit", async (ev) => {
       ev.preventDefault();
 
-      const lang = document.documentElement.getAttribute("data-language") || DEFAULT_LANG;
+      const lang = safeLang(document.documentElement.getAttribute("data-language"));
 
       const name = String(form.elements.namedItem("name").value || "").trim();
       const attending = String(form.elements.namedItem("attending").value || "").trim();
@@ -137,7 +259,7 @@
     }
   }
 
-  // Lightbox
+  // Lightbox (index page)
   const dialog = document.getElementById("lightbox");
   const dialogImg = document.getElementById("lightboxImg");
   const closeBtn = document.getElementById("closeLightbox");
@@ -154,13 +276,14 @@
     dialog.close();
   }
 
-  document.querySelectorAll(".polaroid").forEach((fig) => {
-    fig.addEventListener("click", () => {
-      const full = fig.getAttribute("data-full");
-      const img = fig.querySelector("img");
-      const alt = img ? img.getAttribute("alt") : "";
-      if (full) openLightbox(full, alt);
-    });
+  document.addEventListener("click", (ev) => {
+    const fig = ev.target && ev.target.closest ? ev.target.closest(".polaroid") : null;
+    if (!fig) return;
+
+    const full = fig.getAttribute("data-full");
+    const img = fig.querySelector("img");
+    const alt = img ? img.getAttribute("alt") : "";
+    if (full) openLightbox(full, alt);
   });
 
   if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
