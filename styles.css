@@ -675,6 +675,47 @@ input:focus, select:focus{
 }
 .faq-item .answer p{ margin: 10px 0 0; }
 
+/* Venue gallery (Travel page) */
+.venue-gallery-wrap{
+  padding: 22px;
+}
+.venue-gallery-head{
+  text-align: center;
+}
+.venue-gallery{
+  margin-top: 14px;
+}
+.photo-card{
+  margin: 0;
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 18px;
+  padding: 12px 12px 10px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+}
+.photo-link{
+  display: block;
+  cursor: pointer;
+}
+.photo-card img{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+.photo-card figcaption{
+  margin-top: 10px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 18px;
+  text-align: center;
+  color: rgba(34,48,46,0.86);
+}
+.dot{
+  opacity: 0.55;
+  padding: 0 6px;
+}
+
 /* Language toggling */
 [data-lang]{ display: none; }
 html[data-language="en"] [data-lang="en"]{ display: revert; }
