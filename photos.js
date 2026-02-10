@@ -1,50 +1,9 @@
 // Photo gallery entries.
 // To add photos:
-// 1) Upload images into /assets (or /assets/montemilia)
+// 1) Upload images into /assets
 // 2) Add a new object below and commit.
 
 window.PHOTO_GALLERY = [
-  // Montemilia (venue) - you can replace these images anytime with the same filenames.
-  {
-    full: "assets/montemilia/montemilia-web.jpg",
-    thumb: "assets/montemilia/montemilia-web.jpg",
-    alt: {
-      en: "Montemilia venue view.",
-      es: "Vista del lugar Montemilia."
-    },
-    caption: {
-      en: "Montemilia",
-      es: "Montemilia"
-    },
-    tilt: "tilt2"
-  },
-  {
-    full: "assets/montemilia/montemilia-reception.jpg",
-    thumb: "assets/montemilia/montemilia-reception.jpg",
-    alt: {
-      en: "Reception space at Montemilia.",
-      es: "Espacio de recepción en Montemilia."
-    },
-    caption: {
-      en: "Reception vibes",
-      es: "Vibra de recepción"
-    },
-    tilt: "tilt4"
-  },
-  {
-    full: "assets/montemilia/montemilia-flowers.jpg",
-    thumb: "assets/montemilia/montemilia-flowers.jpg",
-    alt: {
-      en: "Garden and floral details at Montemilia.",
-      es: "Detalles de jardín y flores en Montemilia."
-    },
-    caption: {
-      en: "Garden details",
-      es: "Detalles del jardín"
-    },
-    tilt: "tilt1"
-  },
-
   // Your photos
   {
     full: "assets/photo2.jpg",
@@ -84,5 +43,84 @@ window.PHOTO_GALLERY = [
       es: "El momento del sí"
     },
     tilt: "tilt2"
+  },
+
+  // New photos (6-16)
+  {
+    full: "assets/photo6.jpg",
+    thumb: "assets/photo6_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "Us, always", es: "Nosotros, siempre" },
+    tilt: "tilt1"
+  },
+  {
+    full: "assets/photo7.jpg",
+    thumb: "assets/photo7_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "Little moments", es: "Pequeños momentos" },
+    tilt: "tilt2"
+  },
+  {
+    full: "assets/photo8.jpg",
+    thumb: "assets/photo8_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "A good day", es: "Un buen día" },
+    tilt: "tilt3"
+  },
+  {
+    full: "assets/photo9.jpg",
+    thumb: "assets/photo9_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "Favorite person", es: "Mi persona favorita" },
+    tilt: "tilt4"
+  },
+  {
+    full: "assets/photo10.jpg",
+    thumb: "assets/photo10_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "Weekend vibes", es: "Vibra de fin de semana" },
+    tilt: "tilt5"
+  },
+  {
+    full: "assets/photo11.jpg",
+    thumb: "assets/photo11_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "Smiles included", es: "Sonrisas incluidas" },
+    tilt: "tilt1"
+  },
+  {
+    full: "assets/photo12.jpg",
+    thumb: "assets/photo12_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "Team forever", es: "Equipo por siempre" },
+    tilt: "tilt2"
+  },
+  {
+    full: "assets/photo13.jpg",
+    thumb: "assets/photo13_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "Date night", es: "Noche de cita" },
+    tilt: "tilt3"
+  },
+  {
+    full: "assets/photo14.jpg",
+    thumb: "assets/photo14_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "Just us", es: "Solo nosotros" },
+    tilt: "tilt4"
+  },
+  {
+    full: "assets/photo15.jpg",
+    thumb: "assets/photo15_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "Love looks good", es: "El amor se ve bien" },
+    tilt: "tilt5"
+  },
+  {
+    full: "assets/photo16.jpg",
+    thumb: "assets/photo16_sm.jpg",
+    alt: { en: "Ryan and Joselyn photo.", es: "Foto de Ryan y Joselyn." },
+    caption: { en: "On our way", es: "En camino" },
+    tilt: "tilt1"
   }
 ];
