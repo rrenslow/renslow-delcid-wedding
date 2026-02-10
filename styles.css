@@ -732,6 +732,21 @@ html[data-language="es"] [data-lang="es"]{ display: revert; }
 }
 
 /* Language toggle: two visible buttons with flags */
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flag-icon {
+  width: 18px;
+  height: 14px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+  flex: 0 0 auto;
+}
+
 .lang-switch {
   display: flex;
   gap: 10px;

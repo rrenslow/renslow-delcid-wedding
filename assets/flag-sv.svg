@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="48" viewBox="0 0 64 48" role="img" aria-label="El Salvador flag">
+  <!-- blue white blue -->
+  <rect width="64" height="48" fill="#0047ab"/>
+  <rect y="16" width="64" height="16" fill="#ffffff"/>
+  <!-- simple emblem placeholder -->
+  <g transform="translate(32 24)">
+    <circle r="6" fill="#0b7a3b" opacity="0.95"/>
+    <circle r="4" fill="#f2c200" opacity="0.95"/>
+    <circle r="2" fill="#1e3a8a" opacity="0.95"/>
+  </g>
+</svg>
