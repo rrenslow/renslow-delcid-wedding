@@ -813,3 +813,61 @@ html[data-language="es"] [data-lang="es"]{ display: revert; }
     display: none;
   }
 }
+
+/* === HERO FLOWER LAYOUT OVERRIDE (final invitation) === */
+.hero-card {
+  display: grid !important;
+  grid-template-columns: minmax(220px, 360px) 1fr !important;
+  gap: 26px !important;
+  align-items: stretch !important;
+}
+
+.hero-card .floral-col {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 14px 0 14px 14px !important;
+}
+
+.hero-card .floral-frame {
+  width: 100% !important;
+  max-width: 340px !important;
+  padding: 18px 16px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  background: rgba(255,255,255,0.70) !important;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.08) !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+.hero-card .floral-img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 520px !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 860px) {
+  .hero-card {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .hero-card .floral-col {
+    padding: 10px 0 0 !important;
+  }
+
+  .hero-card .floral-frame {
+    max-width: 360px !important;
+    margin: 0 auto 6px !important;
+  }
+
+  .hero-card .floral-img {
+    max-height: 420px !important;
+  }
+}
+/* === END HERO FLOWER LAYOUT OVERRIDE === */
