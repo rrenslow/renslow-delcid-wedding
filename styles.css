@@ -21,10 +21,10 @@
 html{ scroll-behavior: smooth; }
 body{
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: var(--ink);
-  background: var(--bg);
-  line-height: 1.55;
+  color: #2b2b2b;
+  background: radial-gradient(1200px 800px at 30% 10%, rgba(255,255,255,0.85), rgba(255,255,255,0.0) 60%),
+              radial-gradient(900px 700px at 80% 30%, rgba(255,255,255,0.65), rgba(255,255,255,0.0) 55%),
+              linear-gradient(180deg, #fbf6f0 0%, #f6efe9 45%, #f3ebe4 100%);
 }
 
 .skip{
@@ -115,23 +115,14 @@ body{
 }
 
 .paper{
-  background: var(--paper);
-  border-radius: var(--radius2);
-  box-shadow: var(--shadow2);
-  border: 1px solid rgba(0,0,0,0.06);
-  position: relative;
-  overflow: hidden;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(60, 45, 30, 0.10);
+  box-shadow: 0 10px 30px rgba(30, 20, 10, 0.10);
+  border-radius: 18px;
+  backdrop-filter: blur(2px);
 }
 .paper::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("assets/paper-texture.png");
-  background-size: 900px auto;
-  background-repeat: repeat;
-  opacity: 0.14;
-  pointer-events: none;
-  mix-blend-mode: multiply;
+  opacity: 0.10;
 }
 
 .card{
@@ -153,17 +144,8 @@ body{
   padding: 40px 0 26px;
 }
 .hero-card{
-  --hero-pad: 18px;
-  --hero-gap: 18px;
-  --hero-leftcol: 150px;
-  min-height: 460px;
-  display: grid;
-  grid-template-columns: var(--hero-leftcol) 1fr;
-  gap: var(--hero-gap);
-  align-items: stretch;
-  padding: var(--hero-pad);
-  border-radius: 26px;
-  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
 }
 
 .floral-col{
@@ -273,27 +255,30 @@ body{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   padding: 10px 14px;
   border-radius: 999px;
+  border: 1px solid rgba(60, 45, 30, 0.22);
+  background: rgba(255, 255, 255, 0.72);
+  color: #2b2b2b;
   text-decoration: none;
-  border: 1px solid rgba(0,0,0,0.08);
-  background: rgba(201,170,102,0.18);
-  color: var(--ink);
   font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+  box-shadow: 0 8px 18px rgba(30, 20, 10, 0.10);
 }
 .btn:hover{
-  background: rgba(201,170,102,0.26);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(30, 20, 10, 0.13);
+  background: rgba(255, 255, 255, 0.82);
 }
 .btn.ghost{
-  background: rgba(255,255,255,0.62);
+  background: rgba(255, 255, 255, 0.40);
+  border-color: rgba(60, 45, 30, 0.18);
+  box-shadow: none;
 }
 .btn.ghost:hover{
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
 }
 
 .countdown{
