@@ -751,12 +751,12 @@ html[data-language="es"] [data-lang="es"]{ display: revert; }
   line-height: 1;
   user-select: none;
 }
-
 .lang-btn .flag {
   font-size: 16px;
   line-height: 1;
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
+  font-variant-emoji: emoji;
 }
-
 .lang-btn[aria-pressed="true"] {
   background: rgba(255,255,255,0.95);
   border-color: rgba(0,0,0,0.22);
