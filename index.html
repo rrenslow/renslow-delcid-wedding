@@ -42,40 +42,71 @@
 
   <main id="main">
     <section id="top" class="hero">
-      <div class="wrap">
-        <div class="paper hero-card">
-          <div class="hero-lines" aria-hidden="true"></div>
-                    <div class="floral-col" aria-hidden="true">
-            <div class="hero-flower-frame" aria-hidden="true">
-              <img class="hero-flower" data-lang="en" src="assets/hero-flower-en.png" alt="" aria-hidden="true" />
-              <img class="hero-flower" data-lang="es" src="assets/hero-flower-es.png" alt="" aria-hidden="true" />
-            </div>
-          </div></div>
-          </div>
+  <div class="wrap">
+    <div class="paper hero-card">
+      <div class="hero-lines" aria-hidden="true"></div>
 
-            <div class="hero-actions">
-              <a class="btn" href="index.html#rsvp" data-lang="en">RSVP</a>
-              <a class="btn" href="index.html#rsvp" data-lang="es">Confirmar asistencia</a>
-
-              
-              <a class="btn ghost" href="travel.html" data-lang="en">Details for traveling in El Salvador</a>
-              <a class="btn ghost" href="travel.html" data-lang="es">Detalles para viajar a El Salvador</a>
-
-              <a class="btn ghost" href="assets/wedding.ics" data-bind-href="calendar" data-lang="en">Add to calendar</a>
-              <a class="btn ghost" href="assets/wedding.ics" data-bind-href="calendar" data-lang="es">Agregar al calendario</a>
-            </div>
-
-            <div class="countdown" aria-live="polite">
-              <span class="countdown-label" data-lang="en">Countdown</span>
-              <span class="countdown-label" data-lang="es">Cuenta regresiva</span>
-              <span id="countdownValue" class="countdown-value">...</span>
-            </div>
-          </div>
+      <div class="floral-col" aria-hidden="true">
+        <div class="hero-flower-frame" aria-hidden="true">
+          <img class="hero-flower" data-lang="en" src="assets/hero-flower-en.png" alt="" aria-hidden="true" />
+          <img class="hero-flower" data-lang="es" src="assets/hero-flower-es.png" alt="" aria-hidden="true" />
         </div>
       </div>
-    </section>
 
-    <section id="details" class="section">
+      <div class="hero-content">
+        <p class="kicker" data-lang="en">Please join us!</p>
+        <p class="kicker" data-lang="es">¡Acompáñennos!</p>
+
+        <h1 class="title" data-lang="en">Wedding Ceremony of Ryan and Joselyn</h1>
+        <h1 class="title" data-lang="es">Ceremonia de boda de Ryan y Joselyn</h1>
+
+        <div class="hero-details">
+          <div class="row">
+            <span class="label" data-lang="en">Date</span>
+            <span class="label" data-lang="es">Fecha</span>
+            <span class="value"><span data-bind="dateTime"></span></span>
+          </div>
+
+          <div class="row">
+            <span class="label" data-lang="en">Location</span>
+            <span class="label" data-lang="es">Lugar</span>
+            <span class="value">
+              <strong>MONTEMILIA</strong><br/>
+              Finca Florencia #13<br/>
+              Km 18.5, Carretera al Volcán<br/>
+              de San Salvador,<br/>
+              Santa Tecla, La Libertad,<br/>
+              El Salvador
+              <div class="map-links" style="margin-top: 6px;">
+                <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="googleMaps">Google Maps</a>
+                <span class="dot">·</span>
+                <a class="inline" target="_blank" rel="noopener noreferrer" data-bind-href="waze">Waze</a>
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn ghost" href="#rsvp" data-lang="en">RSVP</a>
+          <a class="btn ghost" href="#rsvp" data-lang="es">Confirmar</a>
+
+          <a class="btn ghost" href="travel.html" data-lang="en">Details for traveling in El Salvador</a>
+          <a class="btn ghost" href="travel.html" data-lang="es">Detalles para viajar a El Salvador</a>
+
+          <a class="btn ghost" href="assets/wedding.ics" data-lang="en">Add to calendar</a>
+          <a class="btn ghost" href="assets/wedding.ics" data-lang="es">Agregar al calendario</a>
+        </div>
+
+        <div class="countdown" aria-live="polite">
+          <span class="tiny" data-lang="en">Countdown</span>
+          <span class="tiny" data-lang="es">Cuenta regresiva</span>
+          <span class="pill"><span id="countdownDays">--</span> <span data-lang="en">days</span><span data-lang="es">días</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="details" class="section">
       <div class="wrap">
         <div class="section-head">
           <h2 data-lang="en">Wedding Details</h2>

@@ -26,14 +26,24 @@
 })();
 
 function applyLanguage(lang) {
-  const root = document.documentElement;
-  root.setAttribute("data-language", lang);
+  const safe = (lang === "es") ? "es" : "en";
+  document.documentElement.setAttribute("data-language", safe);
 
   const nodes = Array.from(document.querySelectorAll("[data-lang]"));
   nodes.forEach((el) => {
     const elLang = el.getAttribute("data-lang");
-    el.hidden = elLang !== lang;
+    const show = (elLang === safe);
+    el.style.display = show ? "" : "none";
+    el.hidden = !show;
+    el.setAttribute("aria-hidden", show ? "false" : "true");
   });
+
+  const buttons = Array.from(document.querySelectorAll(".lang-btn"));
+  buttons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === safe ? "true" : "false"));
+
+  try { localStorage.setItem("siteLang", safe); } catch (e) {}
+}
+);
 
   const buttons = Array.from(document.querySelectorAll(".lang-btn"));
   buttons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
