@@ -966,3 +966,7 @@ html[data-language="es"] [data-lang="es"]{ display: revert; }
     margin: 0 auto 10px;
   }
 }
+
+/* Language visibility (CSS-enforced, so it can’t break JS/photo gallery) */
+html[data-language="en"] [data-lang="es"] { display: none !important; }
+html[data-language="es"] [data-lang="en"] { display: none !important; }

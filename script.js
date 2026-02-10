@@ -1,3 +1,35 @@
+/* --- Language toggle (minimal + safe) --- */
+(function () {
+  try {
+    const root = document.documentElement;
+
+    function safeLang(x) {
+      return (x === "es") ? "es" : "en";
+    }
+
+    function setLang(lang) {
+      const v = safeLang(lang);
+      root.setAttribute("data-language", v);
+
+      const btns = Array.from(document.querySelectorAll(".lang-btn"));
+      btns.forEach((b) => b.setAttribute("aria-pressed", (b.dataset.lang === v) ? "true" : "false"));
+
+      try { localStorage.setItem("siteLang", v); } catch (e) {}
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      let saved = null;
+      try { saved = localStorage.getItem("siteLang"); } catch (e) {}
+      setLang(saved);
+
+      const btns = Array.from(document.querySelectorAll(".lang-btn"));
+      btns.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
+    });
+  } catch (e) {
+    /* If anything goes wrong, do not block the rest of the script. */
+  }
+})();
+
 // Language toggle (English/Spanish), persisted in localStorage
 (function initLanguageToggle() {
   const root = document.documentElement;
@@ -25,23 +57,6 @@
   });
 })();
 
-function applyLanguage(lang) {
-  const safe = (lang === "es") ? "es" : "en";
-  document.documentElement.setAttribute("data-language", safe);
-
-  const nodes = Array.from(document.querySelectorAll("[data-lang]"));
-  nodes.forEach((el) => {
-    const elLang = el.getAttribute("data-lang");
-    const show = (elLang === safe);
-    el.style.display = show ? "" : "none";
-    el.hidden = !show;
-    el.setAttribute("aria-hidden", show ? "false" : "true");
-  });
-
-  const buttons = Array.from(document.querySelectorAll(".lang-btn"));
-  buttons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === safe ? "true" : "false"));
-
-  try { localStorage.setItem("siteLang", safe); } catch (e) {}
 }
 );
 
@@ -52,22 +67,6 @@ function applyLanguage(lang) {
     localStorage.setItem("siteLang", lang);
   } catch (e) {}
 }
-
-(function initLanguageSystem() {
-  let saved = null;
-  try {
-    saved = localStorage.getItem("siteLang");
-  } catch (e) {}
-
-  applyLanguage(saved === "es" ? "es" : "en");
-
-  const buttons = Array.from(document.querySelectorAll(".lang-btn"));
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
-  });
-})();
-
-
 
 // Wedding site interactions: language toggle, RSVP helper, lightbox, countdown, shared bindings.
 
