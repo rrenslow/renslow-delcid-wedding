@@ -147,6 +147,41 @@ body{
   position: relative;
   overflow: hidden;
 }
+
+
+/* Floral frame (language-aware) */
+.floral-col{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding: 14px 10px 0 10px;
+}
+.floral-frame{
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(40,40,40,0.10);
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.10);
+  padding: 18px 18px 14px 18px;
+  backdrop-filter: blur(6px);
+}
+.floral-strip{
+  display:block;
+  width: min(320px, 26vw);
+  height: auto;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.10));
+}
+
+/* Keep the flower visually subtle on small screens */
+@media (max-width: 860px){
+  .floral-strip{
+    width: min(260px, 56vw);
+  }
+  .floral-frame{
+    padding: 14px 14px 10px 14px;
+    border-radius: 16px;
+  }
+}
+
 .floral-col::before{
   content: "";
   position: absolute;
