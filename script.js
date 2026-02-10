@@ -1,3 +1,30 @@
+// Language toggle (English/Spanish), persisted in localStorage
+(function initLanguageToggle() {
+  const root = document.documentElement;
+  const buttons = Array.from(document.querySelectorAll(".lang-btn"));
+
+  if (!buttons.length) return;
+
+  function setLang(lang) {
+    root.setAttribute("data-language", lang);
+    buttons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
+    try {
+      localStorage.setItem("siteLang", lang);
+    } catch (e) {}
+  }
+
+  let saved = null;
+  try {
+    saved = localStorage.getItem("siteLang");
+  } catch (e) {}
+
+  setLang(saved === "es" ? "es" : "en");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => setLang(btn.dataset.lang));
+  });
+})();
+
 // Wedding site interactions: language toggle, RSVP helper, lightbox, countdown, shared bindings.
 
 (function () {
