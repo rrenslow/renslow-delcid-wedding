@@ -147,15 +147,6 @@ body{
   position: relative;
   overflow: hidden;
 }
-
-.floral-col{
-  border-radius: 22px;
-  overflow: hidden;
-  position: relative;
-  z-index: 2;
-  background: #ffffff;
-  border: 1px solid rgba(201,170,102,0.18);
-}
 .floral-col::before{
   content: "";
   position: absolute;
@@ -174,13 +165,6 @@ body{
   height: 100%;
   background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.95));
   pointer-events: none;
-}
-.floral-strip{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(1.02);
 }
 .hero-lines{
   position: absolute;
@@ -700,11 +684,7 @@ html[data-language="es"] [data-lang="es"]{ display: revert; }
     grid-template-columns: 1fr;
     min-height: auto;
   }
-  .floral-col{
-    height: 180px;
-    border-radius: 18px;
-  }
-  .floral-col::after{ width: 0; }
+.floral-col::after{ width: 0; }
   .hero-content{
     padding: 16px 6px 28px;
   }
@@ -765,4 +745,36 @@ html[data-language="es"] [data-lang="es"]{ display: revert; }
 .lang-btn:focus-visible {
   outline: 2px solid rgba(0,0,0,0.35);
   outline-offset: 2px;
+}
+
+/* Invitation flower art: subtle, watercolor-like side element */
+.floral-col {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.floral-strip {
+  display: block;
+  width: auto;
+  max-width: 340px;
+  height: auto;
+  max-height: 560px;
+  opacity: 0.9;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.10));
+  transform: translateY(6px);
+}
+
+@media (max-width: 820px) {
+  .floral-strip {
+    max-width: 220px;
+    max-height: 420px;
+    opacity: 0.92;
+  }
+}
+
+@media (max-width: 560px) {
+  .floral-col {
+    display: none;
+  }
 }
