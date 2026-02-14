@@ -203,9 +203,25 @@
   });
 
   // Build photo gallery (index page)
-  const galleryEl = document.getElementById("photoGallery");
+  /* GALLERY ERROR BANNER */
+function __galleryBanner(msg) {
+  try {
+    const el = document.getElementById("photoGallery");
+    if (!el) return;
+    const box = document.createElement("div");
+    box.className = "paper card subtle";
+    box.style.gridColumn = "1 / -1";
+    box.innerHTML = '<strong>Gallery error:</strong><br/><span style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \\"Liberation Mono\\", \\"Courier New\\", monospace;">' +
+      String(msg).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;") +
+      "</span>";
+    el.prepend(box);
+  } catch (e) {}
+}
+const galleryEl = document.getElementById("photoGallery");
   /* GALLERY FAILSOFT */
 const photos = Array.isArray(window.PHOTO_GALLERY) ? window.PHOTO_GALLERY : [];
+  try {
+
   if (galleryEl && photos) {
     if (photos.length) { galleryEl.innerHTML = ""; }
 
@@ -366,4 +382,6 @@ const photos = Array.isArray(window.PHOTO_GALLERY) ? window.PHOTO_GALLERY : [];
       if (!inside) closeLightbox();
     });
   }
+
+  } catch (e) { __galleryBanner(e && (e.stack || e.message) ? (e.stack || e.message) : e); }
 })();
