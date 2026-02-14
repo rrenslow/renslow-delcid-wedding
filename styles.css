@@ -1,4 +1,4 @@
-/* Ryan & Joselyn wedding site */
+﻿/* Ryan & Joselyn wedding site */
 /* Replace colors, text, and photos as desired. */
 
 :root{
@@ -630,7 +630,7 @@ input:focus, select:focus{
   font-size: 18px;
   color: rgba(34,48,46,0.60);
 }
-.faq-item[open] summary::after{ content: "–"; }
+.faq-item[open] summary::after{ content: "â€“"; }
 .faq-item[open] summary{ background: rgba(201,170,102,0.14); }
 .faq-item .answer{
   padding: 0 16px 14px;
@@ -967,9 +967,9 @@ html[data-language="es"] [data-lang="es"]{ display: revert; }
   }
 }
 
-/* Language visibility (CSS-enforced, so it can’t break JS/photo gallery) */
-html[data-language="en"] [data-lang="es"] { display: none !important; }
-html[data-language="es"] [data-lang="en"] { display: none !important; }
+/* Language visibility (CSS-enforced, so it canâ€™t break JS/photo gallery) */
+html[data-language="en"] :not(.lang-switch) [data-lang="es"] { display: none !important; }
+html[data-language="es"] :not(.lang-switch) [data-lang="en"] { display: none !important; }
 
 /* Inline SVG flags in language toggle */
 .lang-btn .flag { display: inline-flex; align-items: center; }
@@ -1033,4 +1033,5 @@ html[data-language="es"] .lang-switch .lang-btn[data-lang="en"] { display: inlin
 /* If any generic [data-lang] hiding rules hit the buttons, neutralize them */
 .lang-switch [data-lang="en"],
 .lang-switch [data-lang="es"] { display: inline-flex !important; }
+
 
