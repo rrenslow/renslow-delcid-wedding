@@ -630,7 +630,7 @@ input:focus, select:focus{
   font-size: 18px;
   color: rgba(34,48,46,0.60);
 }
-.faq-item[open] summary::after{ content: "â€“"; }
+.faq-item[open] summary::after{ content: "-"; }
 .faq-item[open] summary{ background: rgba(201,170,102,0.14); }
 .faq-item .answer{
   padding: 0 16px 14px;
@@ -679,10 +679,6 @@ input:focus, select:focus{
   padding: 0 6px;
 }
 
-/* Language toggling */
-[data-lang]{ display: none; }
-html[data-language="en"] [data-lang="en"]{ display: revert; }
-html[data-language="es"] [data-lang="es"]{ display: revert; }
 
 /* Responsive */
 @media (min-width: 840px){
@@ -998,14 +994,6 @@ html[data-language="es"] :not(.lang-switch) [data-lang="en"] { display: none !im
 }
 
 
-/* FLAG DEBUG FALLBACK */
-.lang-btn .flag {
-  background: #ddd !important; /* if you can't see this, the span is hidden/clipped */
-  border: 1px solid rgba(0,0,0,0.15) !important;
-  border-radius: 3px !important;
-}
-.lang-btn[data-lang="en"] .flag { background: #e6e6e6 !important; }
-.lang-btn[data-lang="es"] .flag { background: #e6e6e6 !important; }
 
 /* --- FORCE language toggle visible (hotfix) --- */
 .lang-toggle {
@@ -1033,5 +1021,8 @@ html[data-language="es"] .lang-switch .lang-btn[data-lang="en"] { display: inlin
 /* If any generic [data-lang] hiding rules hit the buttons, neutralize them */
 .lang-switch [data-lang="en"],
 .lang-switch [data-lang="es"] { display: inline-flex !important; }
+
+
+
 
 
