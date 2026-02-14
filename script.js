@@ -331,3 +331,58 @@
 })();
 
 
+
+// === RSVP → Google Sheet + Confirm UI ===
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbz60yK0vtSmwLY5Clqhw2Hn5ccxAw7GraT37ZVOIm-LuvyXtQ3sY_r3lXW8X9t_1ZvbdQ/exec";
+
+async function rsvpAppendToSheet(payload){
+  try{
+    const res = await fetch(RSVP_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const out = await res.json().catch(() => ({}));
+    return !!out.ok;
+  } catch(e){
+    console.warn("RSVP sheet write failed:", e);
+    return false;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Pick the RSVP generator form: submit button contains Create/Crear
+  const forms = Array.from(document.querySelectorAll("form"));
+  const form = forms.find(f => {
+    const btn = f.querySelector('button[type="submit"]');
+    if (!btn) return false;
+    const t = (btn.textContent || "").toLowerCase();
+    return t.includes("create") || t.includes("crear");
+  });
+  if (!form) return;
+
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener("submit", () => {
+    // Let existing code generate the message first, then append to sheet
+    setTimeout(async () => {
+      const name = form.querySelector('input[type="text"], input[name*="name"], input[id*="name"]')?.value || "";
+      const attending = form.querySelector('select[name*="attend"], select[id*="attend"], select')?.value || "";
+      const guests = form.querySelector('input[type="number"], input[name*="guest"], input[id*="guest"]')?.value || "";
+      const dietary = form.querySelector('textarea, input[name*="diet"], input[id*="diet"]')?.value || "";
+
+      const language = document.documentElement.getAttribute("data-language") || "en";
+      const ok = await rsvpAppendToSheet({ name, attending, guests, dietary, language });
+
+      if (submitBtn){
+        if (language === "es"){
+          submitBtn.textContent = ok ? "RSVP Confirmado" : "Confirmado (sin guardar)";
+        } else {
+          submitBtn.textContent = ok ? "RSVP Confirmed" : "Confirmed (not saved)";
+        }
+        submitBtn.disabled = true;
+      }
+    }, 0);
+  });
+});
+
