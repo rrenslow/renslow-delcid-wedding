@@ -204,9 +204,10 @@
 
   // Build photo gallery (index page)
   const galleryEl = document.getElementById("photoGallery");
-  const photos = Array.isArray(window.PHOTO_GALLERY) ? window.PHOTO_GALLERY : null;
+  /* GALLERY FAILSOFT */
+const photos = Array.isArray(window.PHOTO_GALLERY) ? window.PHOTO_GALLERY : [];
   if (galleryEl && photos) {
-    galleryEl.innerHTML = "";
+    if (photos.length) { galleryEl.innerHTML = ""; }
 
     photos.forEach((p) => {
       const fig = document.createElement("figure");
