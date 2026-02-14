@@ -1023,3 +1023,14 @@ html[data-language="es"] [data-lang="en"] { display: none !important; }
   opacity: 1 !important;
   pointer-events: auto !important;
 }
+
+/* --- Language toggle: never hide the buttons --- */
+.lang-switch { display: inline-flex !important; gap: 10px !important; align-items: center !important; }
+.lang-switch .lang-btn { display: inline-flex !important; visibility: visible !important; opacity: 1 !important; }
+html[data-language="en"] .lang-switch .lang-btn[data-lang="es"] { display: inline-flex !important; }
+html[data-language="es"] .lang-switch .lang-btn[data-lang="en"] { display: inline-flex !important; }
+
+/* If any generic [data-lang] hiding rules hit the buttons, neutralize them */
+.lang-switch [data-lang="en"],
+.lang-switch [data-lang="es"] { display: inline-flex !important; }
+
