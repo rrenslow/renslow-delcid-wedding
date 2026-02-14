@@ -1006,3 +1006,20 @@ html[data-language="es"] [data-lang="en"] { display: none !important; }
 }
 .lang-btn[data-lang="en"] .flag { background: #e6e6e6 !important; }
 .lang-btn[data-lang="es"] .flag { background: #e6e6e6 !important; }
+
+/* --- FORCE language toggle visible (hotfix) --- */
+.lang-toggle {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+.lang-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
