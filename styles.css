@@ -1024,3 +1024,10 @@ html[data-language="es"] [data-lang="en"]:not(.lang-btn) { display: none !import
   overflow: visible !important;
   white-space: nowrap !important;
 }
+
+/* --- Language toggle: always show BOTH buttons --- */
+.lang-toggle { display: flex; gap: 10px; align-items: center; }
+.lang-btn { display: inline-flex !important; }
+.lang-btn[aria-pressed="false"] { display: inline-flex !important; }
+.lang-btn[hidden] { display: inline-flex !important; }
+
