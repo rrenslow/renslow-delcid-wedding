@@ -962,14 +962,14 @@ input:focus, select:focus{
     margin: 0 auto 10px;
   }
 }
-
-/* Language visibility (CSS-enforced, so it canÃ¢â‚¬â„¢t break JS/photo gallery) */
+/* Language visibility (CSS-enforced, so it can't break JS/photo gallery) */
 html[data-language="en"] :not(.lang-switch) [data-lang="es"] { display: none !important; }
 html[data-language="es"] :not(.lang-switch) [data-lang="en"] { display: none !important; }
 
 /* Inline SVG flags in language toggle */
 .lang-btn .flag { display: inline-flex; align-items: center; }
 .lang-btn .flag-svg { display: block; width: 18px; height: 14px; border-radius: 2px; }
+
 
 
 
