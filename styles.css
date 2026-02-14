@@ -1059,3 +1059,59 @@ a:hover{
 }
 
 /* === your next tweak === */
+
+/* === FORCE SAGE THEME (overrides hard-coded colors) === */
+html, body{
+  color: #2c3231 !important;
+  background: #f3f6f3 !important;
+}
+
+header, .topbar, .nav, .site-nav{
+  background: rgba(243,246,243,0.92) !important;
+  border-bottom: 1px solid rgba(110,154,110,0.22) !important;
+}
+
+/* Main card surfaces */
+.paper, .card, .hero-card, .section-card{
+  background: rgba(255,255,255,0.90) !important;
+  border-color: rgba(110,154,110,0.22) !important;
+}
+
+/* Headings a touch softer than pure black */
+h1, h2, h3, .title{
+  color: #232827 !important;
+}
+
+/* Links */
+a, a:visited{
+  color: #5d885d !important;
+}
+a:hover{
+  color: #4f7c4f !important;
+}
+
+/* Buttons and pills */
+.btn, .lang-btn, .pill{
+  color: #2c3231 !important;
+  border-color: rgba(110,154,110,0.35) !important;
+}
+.btn.ghost, .pill{
+  background: rgba(227,236,227,0.65) !important;
+}
+
+/* If you have accent divider lines/gradients, push them sage */
+.hero-lines::before,
+.hero-lines::after{
+  background: linear-gradient(90deg, rgba(110,154,110,0.25), rgba(110,154,110,0.85), rgba(110,154,110,0.25)) !important;
+}
+
+/* === Footer floral-mini: small, clean, no blob === */
+.floral-mini{
+  width: 96px !important;
+  height: auto !important;
+  display: block !important;
+  filter: none !important;
+  opacity: 0.95 !important;
+  border-radius: 10px !important;
+}
+
