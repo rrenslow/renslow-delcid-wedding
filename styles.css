@@ -974,3 +974,25 @@ html[data-language="es"] [data-lang="en"] { display: none !important; }
 /* Inline SVG flags in language toggle */
 .lang-btn .flag { display: inline-flex; align-items: center; }
 .lang-btn .flag-svg { display: block; width: 18px; height: 14px; border-radius: 2px; }
+
+/* FLAG OVERRIDE: force inline SVG flags to render */
+.lang-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.lang-btn .flag {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 14px !important;
+  line-height: 0 !important;
+  flex: 0 0 auto !important;
+}
+.lang-btn .flag-svg {
+  display: block !important;
+  width: 18px !important;
+  height: 14px !important;
+  border-radius: 2px !important;
+}
