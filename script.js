@@ -386,3 +386,54 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+// === RSVP → Google Sheet + Confirm UI (targets #rsvpForm) ===
+(() => {
+  const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbz60yK0vtSmwLY5Clqhw2Hn5ccxAw7GraT37ZVOIm-LuvyXtQ3sY_r3lXW8X9t_1ZvbdQ/exec";
+
+  async function rsvpAppendToSheet(payload){
+    try{
+      const res = await fetch(RSVP_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const out = await res.json().catch(() => ({}));
+      return !!out.ok;
+    } catch(e){
+      console.warn("RSVP sheet write failed:", e);
+      return false;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("#rsvpForm");
+    if (!form) return;
+
+    form.addEventListener("submit", () => {
+      // Let existing code generate the message first, then append to sheet
+      setTimeout(async () => {
+        const name = form.querySelector('input[name="name"]')?.value || "";
+        const attending = form.querySelector('select[name="attending"]')?.value || "";
+        const guests = form.querySelector('input[name="guests"]')?.value || "";
+        const dietary = form.querySelector('input[name="diet"]')?.value || "";
+
+        const language = document.documentElement.getAttribute("data-language") || "en";
+        const ok = await rsvpAppendToSheet({ name, attending, guests, dietary, language });
+
+        // Update the currently visible submit button (EN or ES)
+        const btn = form.querySelector('button[type="submit"][data-lang="' + language + '"]')
+          || form.querySelector('button[type="submit"]');
+
+        if (btn){
+          if (language === "es"){
+            btn.textContent = ok ? "RSVP Confirmado" : "Confirmado (sin guardar)";
+          } else {
+            btn.textContent = ok ? "RSVP Confirmed" : "Confirmed (not saved)";
+          }
+          btn.disabled = true;
+        }
+      }, 0);
+    });
+  });
+})();
