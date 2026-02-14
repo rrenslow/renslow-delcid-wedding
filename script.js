@@ -1,4 +1,4 @@
-/* Wedding site interactions:
+﻿/* Wedding site interactions:
    - Language toggle (data-language on <html>)
    - Data bindings from window.SITE_CONFIG
    - Photo gallery from window.PHOTO_GALLERY
@@ -40,7 +40,7 @@
     const attending = document.querySelector('select[name="attending"]');
     if (attending && attending.options && attending.options.length >= 3) {
       attending.options[0].textContent = (v === "es") ? "Seleccionar" : "Select";
-      attending.options[1].textContent = (v === "es") ? "Sí" : "Yes";
+      attending.options[1].textContent = (v === "es") ? "SÃ­" : "Yes";
       attending.options[2].textContent = "No";
     }
 
@@ -218,7 +218,7 @@
   }
 
   function initCountdown() {
-    const daysEl = document.getElementById("countdownValue"); // matches index.html
+    const daysEl = document.getElementById("countdownDays"); // matches index.html
     if (!daysEl) return;
 
     const target = new Date(String(CONFIG.startIso || "2026-11-27T16:00:00-06:00"));
@@ -329,4 +329,5 @@
   });
 
 })();
+
 

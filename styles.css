@@ -1006,3 +1006,21 @@ html[data-language="es"] [data-lang="en"] { display: none !important; }
 }
 .lang-btn[data-lang="en"] .flag { background: #e6e6e6 !important; }
 .lang-btn[data-lang="es"] .flag { background: #e6e6e6 !important; }
+
+
+
+
+/* --- Hotfix: do NOT hide language toggle buttons --- */
+/* Many sections use [data-lang] to show/hide translations. The toggle buttons also use data-lang,
+   so they were getting hidden. Exempt .lang-btn from those rules. */
+html[data-language="en"] [data-lang="es"]:not(.lang-btn) { display: none !important; }
+html[data-language="es"] [data-lang="en"]:not(.lang-btn) { display: none !important; }
+
+/* Ensure both buttons are always visible */
+.lang-btn { display: inline-flex !important; }
+
+/* If the container is flex/inline-flex, make sure it doesn't clip the second button */
+.language-switch, .lang-switch, .lang-toggle, .lang-controls {
+  overflow: visible !important;
+  white-space: nowrap !important;
+}
