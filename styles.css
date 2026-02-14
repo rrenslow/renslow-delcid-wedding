@@ -996,3 +996,13 @@ html[data-language="es"] [data-lang="en"] { display: none !important; }
   height: 14px !important;
   border-radius: 2px !important;
 }
+
+
+/* FLAG DEBUG FALLBACK */
+.lang-btn .flag {
+  background: #ddd !important; /* if you can't see this, the span is hidden/clipped */
+  border: 1px solid rgba(0,0,0,0.15) !important;
+  border-radius: 3px !important;
+}
+.lang-btn[data-lang="en"] .flag { background: #e6e6e6 !important; }
+.lang-btn[data-lang="es"] .flag { background: #e6e6e6 !important; }
