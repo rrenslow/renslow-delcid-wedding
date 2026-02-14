@@ -978,3 +978,11 @@ html[data-language="es"] :not(.lang-switch) [data-lang="en"] { display: none !im
 
 
 
+
+/* Never hide the language toggle buttons */
+html[data-language] .lang-switch [data-lang] {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
