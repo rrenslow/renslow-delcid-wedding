@@ -986,3 +986,75 @@ html[data-language] .lang-switch [data-lang] {
   opacity: 1 !important;
 }
 
+
+/* === Sage palette + softer ink (append at end of styles.css) === */
+:root{
+  /* Text */
+  --ink: #232827;          /* dark gray (not black) */
+  --ink-soft: #2c3231;
+
+  /* Sage accents */
+  --sage-0: #f3f6f3;
+  --sage-1: #e3ece3;
+  --sage-2: #c7d9c7;
+  --sage-3: #9fbe9f;
+  --sage-4: #6e9a6e;
+
+  /* Map existing gold accents to sage so existing gradients/lines inherit */
+  --gold:  var(--sage-4);
+  --gold2: var(--sage-2);
+}
+
+/* Global text color */
+html, body{
+  color: var(--ink-soft);
+}
+
+/* Links */
+a{
+  color: var(--sage-4);
+}
+a:hover{
+  color: #5d885d;
+}
+
+/* Buttons: keep your styling, shift accents toward sage */
+.btn{
+  color: var(--ink-soft);
+  border-color: rgba(110,154,110,0.35);
+}
+.btn.ghost{
+  background: rgba(243,246,243,0.65);
+}
+.btn:hover{
+  border-color: rgba(110,154,110,0.55);
+}
+
+/* === Hero flower: larger + less "tilted postcard" === */
+.hero-flower-frame{
+  width: 260px;
+  max-width: 360px;
+  padding: 12px 12px 14px;
+
+  /* less stylized */
+  transform: none;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(110,154,110,0.22);
+  box-shadow: 0 12px 34px rgba(0,0,0,0.10);
+  backdrop-filter: none;
+}
+
+.hero-flower{
+  height: auto;
+  filter: none; /* remove extra stylization */
+}
+
+/* Mobile: keep it larger but controlled */
+@media (max-width: 820px){
+  .hero-flower-frame{
+    width: min(320px, 88vw);
+    margin: 0 auto 10px;
+  }
+}
+
