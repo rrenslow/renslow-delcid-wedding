@@ -970,3 +970,7 @@ html[data-language="es"] [data-lang="es"]{ display: revert; }
 /* Language visibility (CSS-enforced, so it can’t break JS/photo gallery) */
 html[data-language="en"] [data-lang="es"] { display: none !important; }
 html[data-language="es"] [data-lang="en"] { display: none !important; }
+
+/* Inline SVG flags in language toggle */
+.lang-btn .flag { display: inline-flex; align-items: center; }
+.lang-btn .flag-svg { display: block; width: 18px; height: 14px; border-radius: 2px; }
