@@ -220,12 +220,29 @@ function __galleryBanner(msg) {
 const galleryEl = document.getElementById("photoGallery");
   /* GALLERY FAILSOFT */
 const photos = Array.isArray(window.PHOTO_GALLERY) ? window.PHOTO_GALLERY : [];
-  try {
+  
+/* GALLERY NORMALIZE */
+const photosNorm = photos
+  .filter((p) => p && typeof p === "object" && typeof p.full === "string" && typeof p.thumb === "string")
+  .map((p) => {
+    const alt = (p.alt && typeof p.alt === "object") ? p.alt : {};
+    const cap = (p.caption && typeof p.caption === "object") ? p.caption : {};
+    return {
+      full: p.full,
+      thumb: p.thumb,
+      alt: { en: String(alt.en || "Photo"), es: String(alt.es || "Foto") },
+      caption: { en: String(cap.en || ""), es: String(cap.es || "") },
+      tilt: typeof p.tilt === "string" ? p.tilt : "tilt2"
+    };
+  });
+/* Use normalized entries for rendering */
+const photosToRender = photosNorm;
+try {
 
   if (galleryEl && photos) {
-    if (photos.length) { galleryEl.innerHTML = ""; }
+    if (photosToRender.length) { galleryEl.innerHTML = ""; }
 
-    photos.forEach((p) => {
+    photosToRender.forEach((p) => {
       const fig = document.createElement("figure");
       fig.className = "polaroid " + (p.tilt || "tilt1");
       fig.setAttribute("data-full", p.full);
