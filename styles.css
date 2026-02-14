@@ -1,4 +1,4 @@
-/* Ryan & Joselyn wedding site */
+﻿/* Ryan & Joselyn wedding site */
 /* Replace colors, text, and photos as desired. */
 
 :root{
@@ -963,64 +963,13 @@ input:focus, select:focus{
   }
 }
 
-/* Language visibility (CSS-enforced, so it canâ€™t break JS/photo gallery) */
+/* Language visibility (CSS-enforced, so it canÃ¢â‚¬â„¢t break JS/photo gallery) */
 html[data-language="en"] :not(.lang-switch) [data-lang="es"] { display: none !important; }
 html[data-language="es"] :not(.lang-switch) [data-lang="en"] { display: none !important; }
 
 /* Inline SVG flags in language toggle */
 .lang-btn .flag { display: inline-flex; align-items: center; }
 .lang-btn .flag-svg { display: block; width: 18px; height: 14px; border-radius: 2px; }
-
-/* FLAG OVERRIDE: force inline SVG flags to render */
-.lang-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-.lang-btn .flag {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 18px !important;
-  height: 14px !important;
-  line-height: 0 !important;
-  flex: 0 0 auto !important;
-}
-.lang-btn .flag-svg {
-  display: block !important;
-  width: 18px !important;
-  height: 14px !important;
-  border-radius: 2px !important;
-}
-
-
-
-/* --- FORCE language toggle visible (hotfix) --- */
-.lang-toggle {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  gap: 10px !important;
-  align-items: center !important;
-}
-
-.lang-btn {
-  display: inline-flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-
-/* --- Language toggle: never hide the buttons --- */
-.lang-switch { display: inline-flex !important; gap: 10px !important; align-items: center !important; }
-.lang-switch .lang-btn { display: inline-flex !important; visibility: visible !important; opacity: 1 !important; }
-html[data-language="en"] .lang-switch .lang-btn[data-lang="es"] { display: inline-flex !important; }
-html[data-language="es"] .lang-switch .lang-btn[data-lang="en"] { display: inline-flex !important; }
-
-/* If any generic [data-lang] hiding rules hit the buttons, neutralize them */
-.lang-switch [data-lang="en"],
-.lang-switch [data-lang="es"] { display: inline-flex !important; }
 
 
 
