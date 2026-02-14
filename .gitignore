@@ -5,3 +5,7 @@ rename_and_make_sm.py
 # Local CSS backups
 styles.css.bak-*
 
+
+# Local backups
+*.bak-*
+
