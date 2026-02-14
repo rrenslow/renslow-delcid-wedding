@@ -1,116 +1,59 @@
-/* --- Language toggle (minimal + safe) --- */
-(function () {
-  try {
-    const root = document.documentElement;
-
-    function safeLang(x) {
-      return (x === "es") ? "es" : "en";
-    }
-
-    function setLang(lang) {
-      const v = safeLang(lang);
-      root.setAttribute("data-language", v);
-
-      const btns = Array.from(document.querySelectorAll(".lang-btn"));
-      btns.forEach((b) => b.setAttribute("aria-pressed", (b.dataset.lang === v) ? "true" : "false"));
-
-      try { localStorage.setItem("siteLang", v); } catch (e) {}
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      let saved = null;
-      try { saved = localStorage.getItem("siteLang"); } catch (e) {}
-      setLang(saved);
-
-      const btns = Array.from(document.querySelectorAll(".lang-btn"));
-      btns.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
-    });
-  } catch (e) {
-    /* If anything goes wrong, do not block the rest of the script. */
-  }
-})();
-
-// Language toggle (English/Spanish), persisted in localStorage
-(function initLanguageToggle() {
-  const root = document.documentElement;
-  const buttons = Array.from(document.querySelectorAll(".lang-btn"));
-
-  if (!buttons.length) return;
-
-  function setLang(lang) {
-    root.setAttribute("data-language", lang);
-    buttons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
-    try {
-      localStorage.setItem("siteLang", lang);
-    } catch (e) {}
-  }
-
-  let saved = null;
-  try {
-    saved = localStorage.getItem("siteLang");
-  } catch (e) {}
-
-  setLang(saved === "es" ? "es" : "en");
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => setLang(btn.dataset.lang));
-  });
-})();
-
-}
-);
-
-  const buttons = Array.from(document.querySelectorAll(".lang-btn"));
-  buttons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
-
-  try {
-    localStorage.setItem("siteLang", lang);
-  } catch (e) {}
-}
-
-// Wedding site interactions: language toggle, RSVP helper, lightbox, countdown, shared bindings.
+/* Wedding site interactions:
+   - Language toggle (data-language on <html>)
+   - Data bindings from window.SITE_CONFIG
+   - Photo gallery from window.PHOTO_GALLERY
+   - Countdown (days)
+   - RSVP message helper
+   - Lightbox
+*/
 
 (function () {
+  "use strict";
+
   const DEFAULT_LANG = "en";
 
-  const CONFIG = (window.SITE_CONFIG && typeof window.SITE_CONFIG === "object") ? window.SITE_CONFIG : {};
-  const CONTACT = CONFIG.contact || {};
-  const VENUE = CONFIG.venue || {};
-
-  const PHONE_E164 = CONTACT.phoneE164 || "+15097139030";
-  const PHONE_DISPLAY = CONTACT.phoneDisplay || "509-713-9030";
-
-  function safeLang(lang) {
-    return (lang === "es" || lang === "en") ? lang : DEFAULT_LANG;
+  function safeLang(x) {
+    return (x === "es") ? "es" : "en";
   }
 
-  function getLanguage() {
+  function getSavedLang() {
     try {
-      const saved = localStorage.getItem("weddingLang");
-      if (saved === "en" || saved === "es") return saved;
-    } catch (e) {}
-    return DEFAULT_LANG;
+      const v = localStorage.getItem("siteLang");
+      return safeLang(v);
+    } catch (e) {
+      return DEFAULT_LANG;
+    }
+  }
+
+  function saveLang(lang) {
+    try { localStorage.setItem("siteLang", lang); } catch (e) {}
   }
 
   function setLanguage(lang) {
-    const safe = safeLang(lang);
-    document.documentElement.setAttribute("data-language", safe);
+    const v = safeLang(lang);
+    document.documentElement.setAttribute("data-language", v);
 
-    document.querySelectorAll(".lang-btn").forEach((btn) => {
-      const isActive = btn.dataset.lang === safe;
-      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
-    });
+    const btns = Array.from(document.querySelectorAll(".lang-btn"));
+    btns.forEach((b) => b.setAttribute("aria-pressed", (b.dataset.lang === v) ? "true" : "false"));
 
-    // Update RSVP select labels
-    const attendingSelect = document.querySelector('select[name="attending"]');
-    if (attendingSelect && attendingSelect.options && attendingSelect.options.length >= 3) {
-      attendingSelect.options[0].textContent = (safe === "es") ? "Seleccionar" : "Select";
-      attendingSelect.options[1].textContent = (safe === "es") ? "Sí" : "Yes";
-      attendingSelect.options[2].textContent = "No";
+    // RSVP select label fixups (optional)
+    const attending = document.querySelector('select[name="attending"]');
+    if (attending && attending.options && attending.options.length >= 3) {
+      attending.options[0].textContent = (v === "es") ? "Seleccionar" : "Select";
+      attending.options[1].textContent = (v === "es") ? "Sí" : "Yes";
+      attending.options[2].textContent = "No";
     }
 
-    try { localStorage.setItem("weddingLang", safe); } catch (e) {}
+    saveLang(v);
+    return v;
   }
+
+  const CONFIG = (window.SITE_CONFIG && typeof window.SITE_CONFIG === "object") ? window.SITE_CONFIG : {};
+  const CONTACT = (CONFIG.contact && typeof CONFIG.contact === "object") ? CONFIG.contact : {};
+  const VENUE = (CONFIG.venue && typeof CONFIG.venue === "object") ? CONFIG.venue : {};
+
+  const PHONE_E164 = CONTACT.phoneE164 || "+15097139030";
+  const PHONE_DISPLAY = CONTACT.phoneDisplay || "509-713-9030";
 
   function rsvpDisplay(url) {
     const u = String(url || "").trim();
@@ -126,13 +69,11 @@
   }
 
   function makeGoogleMapsLink(query) {
-    const q = encodeURIComponent(query);
-    return "https://www.google.com/maps/search/?api=1&query=" + q;
+    return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query);
   }
 
   function makeWazeLink(query) {
-    const q = encodeURIComponent(query);
-    return "https://waze.com/ul?q=" + q + "&navigate=yes";
+    return "https://waze.com/ul?q=" + encodeURIComponent(query) + "&navigate=yes";
   }
 
   function applyBindings() {
@@ -142,7 +83,6 @@
     document.querySelectorAll("[data-bind]").forEach((el) => {
       const key = el.getAttribute("data-bind");
       const elLang = safeLang(el.getAttribute("data-lang") || lang);
-
       let value = "";
 
       if (key === "dateTime") {
@@ -178,9 +118,9 @@
       sms: "sms:" + PHONE_E164,
       rsvpUrl: String(CONTACT.rsvpUrl || ""),
       calendar: String(CONFIG.calendarPath || "assets/wedding.ics"),
-      venueWebsite: String((VENUE.links || {}).website || ""),
-      venueInstagram: String((VENUE.links || {}).instagram || ""),
-      venueFacebook: String((VENUE.links || {}).facebook || "")
+      venueWebsite: String(((VENUE.links || {}).website) || ""),
+      venueInstagram: String(((VENUE.links || {}).instagram) || ""),
+      venueFacebook: String(((VENUE.links || {}).facebook) || "")
     };
 
     document.querySelectorAll("[data-bind-href]").forEach((a) => {
@@ -190,59 +130,32 @@
     });
   }
 
-  // Initialize language and bindings
-  setLanguage(getLanguage());
-  applyBindings();
+  function initGallery() {
+    const galleryEl = document.getElementById("photoGallery");
+    if (!galleryEl) return;
 
-  // Wire up language buttons
-  document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      setLanguage(btn.dataset.lang);
-      applyBindings();
-    });
-  });
+    const photos = Array.isArray(window.PHOTO_GALLERY) ? window.PHOTO_GALLERY : [];
 
-  // Build photo gallery (index page)
-  /* GALLERY ERROR BANNER */
-function __galleryBanner(msg) {
-  try {
-    const el = document.getElementById("photoGallery");
-    if (!el) return;
-    const box = document.createElement("div");
-    box.className = "paper card subtle";
-    box.style.gridColumn = "1 / -1";
-    box.innerHTML = '<strong>Gallery error:</strong><br/><span style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \\"Liberation Mono\\", \\"Courier New\\", monospace;">' +
-      String(msg).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;") +
-      "</span>";
-    el.prepend(box);
-  } catch (e) {}
-}
-const galleryEl = document.getElementById("photoGallery");
-  /* GALLERY FAILSOFT */
-const photos = Array.isArray(window.PHOTO_GALLERY) ? window.PHOTO_GALLERY : [];
-  
-/* GALLERY NORMALIZE */
-const photosNorm = photos
-  .filter((p) => p && typeof p === "object" && typeof p.full === "string" && typeof p.thumb === "string")
-  .map((p) => {
-    const alt = (p.alt && typeof p.alt === "object") ? p.alt : {};
-    const cap = (p.caption && typeof p.caption === "object") ? p.caption : {};
-    return {
-      full: p.full,
-      thumb: p.thumb,
-      alt: { en: String(alt.en || "Photo"), es: String(alt.es || "Foto") },
-      caption: { en: String(cap.en || ""), es: String(cap.es || "") },
-      tilt: typeof p.tilt === "string" ? p.tilt : "tilt2"
-    };
-  });
-/* Use normalized entries for rendering */
-const photosToRender = photosNorm;
-try {
+    const norm = photos
+      .filter((p) => p && typeof p === "object" && typeof p.full === "string" && typeof p.thumb === "string")
+      .map((p) => {
+        const alt = (p.alt && typeof p.alt === "object") ? p.alt : {};
+        const cap = (p.caption && typeof p.caption === "object") ? p.caption : {};
+        return {
+          full: p.full,
+          thumb: p.thumb,
+          alt: { en: String(alt.en || "Photo"), es: String(alt.es || "Foto") },
+          caption: { en: String(cap.en || ""), es: String(cap.es || "") },
+          tilt: typeof p.tilt === "string" ? p.tilt : "tilt2"
+        };
+      });
 
-  if (galleryEl && photos) {
-    if (photosToRender.length) { galleryEl.innerHTML = ""; }
+    if (!norm.length) return;
 
-    photosToRender.forEach((p) => {
+    // Replace fallback content
+    galleryEl.innerHTML = "";
+
+    norm.forEach((p) => {
       const fig = document.createElement("figure");
       fig.className = "polaroid " + (p.tilt || "tilt1");
       fig.setAttribute("data-full", p.full);
@@ -265,71 +178,109 @@ try {
 
       galleryEl.appendChild(fig);
     });
+
+    // Lightbox wiring
+    const dialog = document.getElementById("lightbox");
+    const dialogImg = document.getElementById("lightboxImg");
+    const closeBtn = document.getElementById("closeLightbox");
+
+    function openLightbox(src, alt) {
+      if (!dialog || !dialogImg) return;
+      dialogImg.src = src;
+      dialogImg.alt = alt || "";
+      dialog.showModal();
+    }
+
+    function closeLightbox() {
+      if (!dialog) return;
+      dialog.close();
+    }
+
+    document.addEventListener("click", (ev) => {
+      const t = ev.target;
+      const fig = (t && t.closest) ? t.closest(".polaroid") : null;
+      if (!fig) return;
+      const full = fig.getAttribute("data-full");
+      const img = fig.querySelector("img");
+      const alt = img ? img.getAttribute("alt") : "";
+      if (full) openLightbox(full, alt);
+    });
+
+    if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+    if (dialog) {
+      dialog.addEventListener("click", (ev) => {
+        if (!dialogImg) return;
+        const rect = dialogImg.getBoundingClientRect();
+        const inside = ev.clientX >= rect.left && ev.clientX <= rect.right && ev.clientY >= rect.top && ev.clientY <= rect.bottom;
+        if (!inside) closeLightbox();
+      });
+    }
   }
 
-  // Countdown
-  const countdownEl = document.getElementById("countdownValue");
-  if (countdownEl) {
+  function initCountdown() {
+    const daysEl = document.getElementById("countdownValue"); // matches index.html
+    if (!daysEl) return;
+
     const target = new Date(String(CONFIG.startIso || "2026-11-27T16:00:00-06:00"));
-    const tick = () => {
+
+    function tick() {
       const now = new Date();
       const ms = target.getTime() - now.getTime();
       const days = Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24)));
-      const lang = safeLang(document.documentElement.getAttribute("data-language"));
-      countdownEl.textContent = (lang === "es") ? (days + " días") : (days + " days");
-    };
+      daysEl.textContent = String(days);
+    }
+
     tick();
-    setInterval(tick, 60_000);
+    setInterval(tick, 60 * 1000);
   }
 
-  // RSVP form helper (index page)
-  const form = document.getElementById("rsvpForm");
-  const out = document.getElementById("rsvpOutput");
-  const box = document.getElementById("messageBox");
-  const smsBtn = document.getElementById("smsBtn");
-  const smsBtnEs = document.getElementById("smsBtnEs");
-  const copyBtn = document.getElementById("copyBtn");
-  const copyBtnEs = document.getElementById("copyBtnEs");
+  function initRsvpForm() {
+    const form = document.getElementById("rsvpForm");
+    const out = document.getElementById("rsvpOutput");
+    const box = document.getElementById("messageBox");
+    const smsBtn = document.getElementById("smsBtn");
+    const smsBtnEs = document.getElementById("smsBtnEs");
+    const copyBtn = document.getElementById("copyBtn");
+    const copyBtnEs = document.getElementById("copyBtnEs");
 
-  function buildMessage(values, lang) {
-    if (lang === "es") {
+    if (!form || !out || !box) return;
+
+    function buildMessage(values, lang) {
+      if (lang === "es") {
+        return (
+          "Hola! Soy " + values.name + ".\n" +
+          "RSVP: " + values.attending + "\n" +
+          "Invitados: " + values.guests + "\n" +
+          (values.diet ? ("Restricciones: " + values.diet + "\n") : "") +
+          "Gracias!"
+        );
+      }
       return (
-        "Hola! Soy " + values.name + ".\n" +
+        "Hi! This is " + values.name + ".\n" +
         "RSVP: " + values.attending + "\n" +
-        "Invitados: " + values.guests + "\n" +
-        (values.diet ? ("Restricciones: " + values.diet + "\n") : "") +
-        "Gracias!"
+        "Guests: " + values.guests + "\n" +
+        (values.diet ? ("Dietary notes: " + values.diet + "\n") : "") +
+        "Thank you!"
       );
     }
-    return (
-      "Hi! This is " + values.name + ".\n" +
-      "RSVP: " + values.attending + "\n" +
-      "Guests: " + values.guests + "\n" +
-      (values.diet ? ("Dietary notes: " + values.diet + "\n") : "") +
-      "Thank you!"
-    );
-  }
 
-  function smsHref(message) {
-    const body = encodeURIComponent(message);
-    return "sms:" + PHONE_E164 + "?&body=" + body;
-  }
-
-  async function copyToClipboard(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch (e) {
-      return false;
+    function smsHref(message) {
+      return "sms:" + PHONE_E164 + "?&body=" + encodeURIComponent(message);
     }
-  }
 
-  if (form && out && box) {
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
     form.addEventListener("submit", async (ev) => {
       ev.preventDefault();
 
       const lang = safeLang(document.documentElement.getAttribute("data-language"));
-
       const name = String(form.elements.namedItem("name").value || "").trim();
       const attending = String(form.elements.namedItem("attending").value || "").trim();
       const guests = String(form.elements.namedItem("guests").value || "1").trim();
@@ -355,50 +306,27 @@ try {
       }
     });
 
-    if (copyBtn) {
-      copyBtn.addEventListener("click", () => copyToClipboard(box.textContent || ""));
-    }
-    if (copyBtnEs) {
-      copyBtnEs.addEventListener("click", () => copyToClipboard(box.textContent || ""));
-    }
+    if (copyBtn) copyBtn.addEventListener("click", () => copyToClipboard(box.textContent || ""));
+    if (copyBtnEs) copyBtnEs.addEventListener("click", () => copyToClipboard(box.textContent || ""));
   }
 
-  // Lightbox (index page)
-  const dialog = document.getElementById("lightbox");
-  const dialogImg = document.getElementById("lightboxImg");
-  const closeBtn = document.getElementById("closeLightbox");
+  // Boot
+  document.addEventListener("DOMContentLoaded", () => {
+    const lang = setLanguage(getSavedLang());
 
-  function openLightbox(src, alt) {
-    if (!dialog || !dialogImg) return;
-    dialogImg.src = src;
-    dialogImg.alt = alt || "";
-    dialog.showModal();
-  }
+    // Wire up language buttons
+    const btns = Array.from(document.querySelectorAll(".lang-btn"));
+    btns.forEach((b) => b.addEventListener("click", () => {
+      setLanguage(b.dataset.lang);
+      applyBindings();
+    }));
 
-  function closeLightbox() {
-    if (!dialog) return;
-    dialog.close();
-  }
+    applyBindings();
+    initCountdown();
+    initRsvpForm();
 
-  document.addEventListener("click", (ev) => {
-    const fig = ev.target && ev.target.closest ? ev.target.closest(".polaroid") : null;
-    if (!fig) return;
-
-    const full = fig.getAttribute("data-full");
-    const img = fig.querySelector("img");
-    const alt = img ? img.getAttribute("alt") : "";
-    if (full) openLightbox(full, alt);
+    try { initGallery(); } catch (e) { /* fail soft */ }
   });
 
-  if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
-  if (dialog) {
-    dialog.addEventListener("click", (ev) => {
-      const rect = dialogImg ? dialogImg.getBoundingClientRect() : null;
-      if (!rect) return;
-      const inside = ev.clientX >= rect.left && ev.clientX <= rect.right && ev.clientY >= rect.top && ev.clientY <= rect.bottom;
-      if (!inside) closeLightbox();
-    });
-  }
-
-  } catch (e) { __galleryBanner(e && (e.stack || e.message) ? (e.stack || e.message) : e); }
 })();
+
