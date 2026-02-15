@@ -1115,3 +1115,10 @@ a:hover{
   border-radius: 10px !important;
 }
 
+/* Countdown: remove green fill, keep pill look */
+.countdown {
+  background: #fff !important;
+}
+.countdown * {
+  background: transparent !important;
+}
