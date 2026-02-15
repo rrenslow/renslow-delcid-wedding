@@ -1131,3 +1131,9 @@ html {
 #schedule .subtle {
   margin-top: 18px;
 }
+
+/* Schedule note: match pill width, centered */
+#schedule .schedule-note {
+  max-width: 360px;
+  margin: 18px auto 0;
+}
