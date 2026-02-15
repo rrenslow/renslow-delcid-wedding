@@ -1126,3 +1126,8 @@ a:hover{
 html {
   font-size: 125%;
 }
+
+/* Schedule: add a touch more space before the "No gifts" note */
+#schedule .subtle {
+  margin-top: 18px;
+}
