@@ -14,13 +14,9 @@
   }
 
   async function postRsvp(payload){
-    // Send-only, opaque response (no-cors)
-    await fetch(RSVP_ENDPOINT, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+  const qs = new URLSearchParams(payload);
+  // Fire-and-forget; GET survives the Apps Script redirect behavior
+  await fetch(`${"https://script.google.com/macros/s/AKfycbzKfGn20yh49PfsAlNc6hJQjN7aXm5pipPmBTlj-WWJZy-LNEC6mWSGn8Li3sKLIjjtYg/exec"}?${qs.toString()}`, { mode: "no-cors" });
   }
 
   function setButtonConfirmed(form){
