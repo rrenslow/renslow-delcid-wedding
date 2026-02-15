@@ -9,3 +9,7 @@ styles.css.bak-*
 # Local backups
 *.bak-*
 
+
+# Ignore backup files
+*.bak
+
