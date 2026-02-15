@@ -1122,3 +1122,7 @@ a:hover{
 .countdown * {
   background: transparent !important;
 }
+
+html {
+  font-size: 115%;
+}
