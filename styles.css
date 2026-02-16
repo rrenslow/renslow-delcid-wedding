@@ -1137,3 +1137,5 @@ html {
   max-width: 360px;
   margin: 18px auto 0;
 }
+
+.hero-details { font-size: 125%; }
