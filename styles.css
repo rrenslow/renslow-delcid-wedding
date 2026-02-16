@@ -1139,6 +1139,6 @@ html {
 }
 
 /* Hero: scale Date/Location text only */
-.hero-details { font-size: 140%; }              /* overall bump */
-.hero-details .label { font-size: 110%; }        /* optional: keep labels slightly smaller */
-.hero-details .value { font-size: 120%; }       /* optional: emphasize values a bit */
+.hero-details { font-size: 115%; }              /* overall bump */
+.hero-details .label { font-size: 95%; }        /* optional: keep labels slightly smaller */
+.hero-details .value { font-size: 105%; }       /* optional: emphasize values a bit */
