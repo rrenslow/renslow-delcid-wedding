@@ -1138,4 +1138,7 @@ html {
   margin: 18px auto 0;
 }
 
-.hero-details { font-size: 125%; }
+/* Hero: scale Date/Location text only */
+.hero-details { font-size: 140%; }              /* overall bump */
+.hero-details .label { font-size: 110%; }        /* optional: keep labels slightly smaller */
+.hero-details .value { font-size: 120%; }       /* optional: emphasize values a bit */
