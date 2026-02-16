@@ -1142,3 +1142,10 @@ html {
 .hero-details { font-size: 106%; }              /* overall bump */
 .hero-details .label { font-size: 100%; }        /* optional: keep labels slightly smaller */
 .hero-details .value { font-size: 100%; }       /* optional: emphasize values a bit */
+
+/* Hero details: add a little breathing room between label and value (mobile) */
+@media (max-width: 520px) {
+  .hero-details .row .value {
+    padding-left: 0.5rem; /* ~2-3 “spaces” */
+  }
+}
