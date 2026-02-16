@@ -1127,15 +1127,16 @@ html {
   font-size: 125%;
 }
 
-/* Schedule: spacing + no-gifts card styling */
+/* Schedule: spacing + no-gifts alignment */
 #schedule .schedule-grid {
   row-gap: 18px;
 }
 
 #schedule .schedule-note {
-  max-width: none;
-  margin: 18px 0 0;
+  grid-column: 1 / -1; /* match the grid edges of 4/5/After */
+  margin-top: 6px;     /* small extra gap beyond row-gap */
 }
+
 
 /* Hero: scale Date/Location text only */
 .hero-details { font-size: 107%; }              /* overall bump */
