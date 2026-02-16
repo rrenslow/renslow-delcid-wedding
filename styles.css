@@ -1124,7 +1124,7 @@ a:hover{
 }
 
 html {
-  font-size: 125%;
+  font-size: 120%;
 }
 
 /* Schedule: spacing + no-gifts alignment */
@@ -1139,6 +1139,6 @@ html {
 
 
 /* Hero: scale Date/Location text only */
-.hero-details { font-size: 107%; }              /* overall bump */
+.hero-details { font-size: 106%; }              /* overall bump */
 .hero-details .label { font-size: 100%; }        /* optional: keep labels slightly smaller */
 .hero-details .value { font-size: 100%; }       /* optional: emphasize values a bit */
