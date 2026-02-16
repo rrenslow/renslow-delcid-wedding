@@ -1127,18 +1127,17 @@ html {
   font-size: 125%;
 }
 
-/* Schedule: add a touch more space before the "No gifts" note */
-#schedule .subtle {
-  margin-top: 18px;
+/* Schedule: spacing + no-gifts card styling */
+#schedule .schedule-grid {
+  row-gap: 18px;
 }
 
-/* Schedule note: match pill width, centered */
 #schedule .schedule-note {
-  max-width: 360px;
-  margin: 18px auto 0;
+  max-width: none;
+  margin: 18px 0 0;
 }
 
 /* Hero: scale Date/Location text only */
-.hero-details { font-size: 115%; }              /* overall bump */
-.hero-details .label { font-size: 95%; }        /* optional: keep labels slightly smaller */
-.hero-details .value { font-size: 105%; }       /* optional: emphasize values a bit */
+.hero-details { font-size: 107%; }              /* overall bump */
+.hero-details .label { font-size: 100%; }        /* optional: keep labels slightly smaller */
+.hero-details .value { font-size: 100%; }       /* optional: emphasize values a bit */
