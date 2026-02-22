@@ -40,7 +40,7 @@
     const attending = document.querySelector('select[name="attending"]');
     if (attending && attending.options && attending.options.length >= 3) {
       attending.options[0].textContent = (v === "es") ? "Seleccionar" : "Select";
-      attending.options[1].textContent = (v === "es") ? "SÃ­" : "Yes";
+      attending.options[1].textContent = (v === "es") ? "Sí­" : "Yes";
       attending.options[2].textContent = "No";
     }
 
